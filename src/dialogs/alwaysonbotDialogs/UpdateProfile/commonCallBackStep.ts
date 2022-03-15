@@ -2,19 +2,19 @@
 import {
     Choice,
     ChoicePrompt, ComponentDialog, DialogTurnResult, PromptValidatorContext, TextPrompt, WaterfallDialog, WaterfallStepContext
-} from "botbuilder-dialogs";
-import { CommonPromptValidatorModel } from "../../../models/commonPromptValidatorModel";
-import { ContinueAndFeedbackStep, CONTINUE_AND_FEEDBACK_STEP } from "../Common/continueAndFeedbackStep";
-import { FeedBackStep, FEED_BACK_STEP } from "../Common/feedBackStep";
-import { CommonChoiceCheckStep, COMMON_CHOICE_CHECK_STEP } from "../UpdateProfile/UpdateAddress/commonChoiceCheckStep";
-import i18n from "../../locales/i18nConfig";
-import { CallbackBotDetails } from "../../callbackDialogs/callbackBotDetails";
-import { CALLBACK_BOT_DIALOG,CallbackBotDialog } from "../../callbackDialogs/callbackBotDialog";
-const CHOISE_PROMPT = "CHOISE_PROMPT";
-const TEXT_PROMPT = "TEXT_PROMPT";
+} from 'botbuilder-dialogs';
+import { CommonPromptValidatorModel } from '../../../models/commonPromptValidatorModel';
+import { ContinueAndFeedbackStep, CONTINUE_AND_FEEDBACK_STEP } from '../Common/continueAndFeedbackStep';
+import { FeedBackStep, FEED_BACK_STEP } from '../Common/feedBackStep';
+import { CommonChoiceCheckStep, COMMON_CHOICE_CHECK_STEP } from '../UpdateProfile/UpdateAddress/commonChoiceCheckStep';
+import i18n from '../../locales/i18nConfig';
+import { CallbackBotDetails } from '../../callbackDialogs/callbackBotDetails';
+import { CALLBACK_BOT_DIALOG,CallbackBotDialog } from '../../callbackDialogs/callbackBotDialog';
+const CHOISE_PROMPT = 'CHOISE_PROMPT';
+const TEXT_PROMPT = 'TEXT_PROMPT';
 
-export const COMMON_CALL_BACK_STEP = "COMMON_CALL_BACK_STEP";
-const COMMON_CALL_BACK_WATERFALL_STEP = "COMMON_CALL_BACK_WATERFALL_STEP";
+export const COMMON_CALL_BACK_STEP = 'COMMON_CALL_BACK_STEP';
+const COMMON_CALL_BACK_WATERFALL_STEP = 'COMMON_CALL_BACK_WATERFALL_STEP';
 
 // Define the main dialog and its related components.
 export class CommonCallBackStep extends ComponentDialog {
@@ -45,19 +45,19 @@ export class CommonCallBackStep extends ComponentDialog {
      */
     async continueStep(stepContext: WaterfallStepContext): Promise<DialogTurnResult> {
         const details = stepContext.options as CommonPromptValidatorModel;
-        let commonPromptValidatorModel = new CommonPromptValidatorModel(
-            ["YesIWantToRequestCall", "NoNotForNow"],
-            Number(i18n.__("MaxRetryCount")),
-            details.promptCode,details.promptCode+"PromptMessage"
+        const commonPromptValidatorModel = new CommonPromptValidatorModel(
+            ['YesIWantToRequestCall', 'NoNotForNow'],
+            Number(i18n.__('MaxRetryCount')),
+            details.promptCode,details.promptCode+'PromptMessage'
         );
-        //call dialog
+        // call dialog
         return await stepContext.beginDialog(COMMON_CHOICE_CHECK_STEP, commonPromptValidatorModel);
     }
     /**
-    * User selection step in the waterfall.
-    * User selects the "Yes" prompt to navigate to the call back flow.
-    * User selects the "No" prompt to navigate to initial dialog in the flow.
-    */
+     * User selection step in the waterfall.
+     * User selects the "Yes" prompt to navigate to the call back flow.
+     * User selects the "No" prompt to navigate to initial dialog in the flow.
+     */
 
      private async selectionStep(stepContext: WaterfallStepContext): Promise<DialogTurnResult> {
         const commonPromptValidatorModel = stepContext.result as CommonPromptValidatorModel;
@@ -65,10 +65,10 @@ export class CommonCallBackStep extends ComponentDialog {
         if (commonPromptValidatorModel != null && commonPromptValidatorModel.status)
         {
             switch (commonPromptValidatorModel.result) {
-                case "YesIWantToRequestCall":
+                case 'YesIWantToRequestCall':
                     const callbackBotDetails  = new CallbackBotDetails();
                     return await stepContext.replaceDialog(CALLBACK_BOT_DIALOG,callbackBotDetails);
-                case "NoNotForNow":
+                case 'NoNotForNow':
                     return await stepContext.replaceDialog(CONTINUE_AND_FEEDBACK_STEP, ContinueAndFeedbackStep);
             }
         }

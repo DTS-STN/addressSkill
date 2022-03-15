@@ -67,7 +67,7 @@ const botFrameworkAuthentication = createBotFrameworkAuthenticationFromConfigura
 const adapter = new CloudAdapter(botFrameworkAuthentication);
 // Create adapter.
 // See https://aka.ms/about-bot-adapter to learn more about adapters.
-//const adapter = new CloudAdapter(botFrameworkAuthentication);
+// const adapter = new CloudAdapter(botFrameworkAuthentication);
 
 // Catch-all for errors.
 const onTurnErrorHandler = async (context, error) => {
@@ -116,7 +116,7 @@ const server = restify.createServer();
 
 server.use(restify.plugins.bodyParser());
 
-server.listen(process.env.port || process.env.PORT || 39785, () => {
+server.listen(process.env.port || process.env.PORT || 3978, () => {
     console.log(`\n${server.name} listening to ${server.url}`);
     console.log('\nGet Bot Framework Emulator: https://aka.ms/botframework-emulator');
     console.log('\nTo talk to your bot, open the emulator select "Open Bot"');
@@ -128,7 +128,7 @@ server.get('/manifest/*', restify.plugins.serveStatic({ directory: './manifest',
 // [OPTIONAL]
 // When deploying azure usually pings the web app server to know the status. The request can be ignored or answered, depending
 // on the implementation. In my case it was logging the errors so I prefer to just reply to the request.
-server.get("/", (req, res, next) => {
+server.get('/', (req, res, next) => {
     res.send(200);
     next();
   });

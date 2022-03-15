@@ -3,19 +3,19 @@ import {
   ComponentDialog,
   WaterfallDialog,
   ChoiceFactory,
-  WaterfallStepContext,
-} from "botbuilder-dialogs";
+  WaterfallStepContext
+} from 'botbuilder-dialogs';
 
-import { LuisRecognizer } from "botbuilder-ai";
+import { LuisRecognizer } from 'botbuilder-ai';
 
-import i18n from "../locales/i18nConfig";
-import { GET_USER_EMAIL_STEP } from "./getUserEmailStep";
-import { CallbackBotDetails } from "./callbackBotDetails";
-import { CallbackRecognizer } from "./callbackRecognizer";
+import i18n from '../locales/i18nConfig';
+import { GET_USER_EMAIL_STEP } from './getUserEmailStep';
+import { CallbackBotDetails } from './callbackBotDetails';
+import { CallbackRecognizer } from './callbackRecognizer';
 
-const TEXT_PROMPT = "TEXT_PROMPT";
-export const CONFIRM_EMAIL_STEP = "CONFIRM_EMAIL_STEP";
-const CONFIRM_EMAIL_WATERFALL_STEP = "CONFIRM_EMAIL_WATERFALL_STEP";
+const TEXT_PROMPT = 'TEXT_PROMPT';
+export const CONFIRM_EMAIL_STEP = 'CONFIRM_EMAIL_STEP';
+const CONFIRM_EMAIL_WATERFALL_STEP = 'CONFIRM_EMAIL_WATERFALL_STEP';
 
 const MAX_ERROR_COUNT = 3;
 
@@ -29,7 +29,7 @@ export class ConfirmEmailStep extends ComponentDialog {
     this.addDialog(
       new WaterfallDialog(CONFIRM_EMAIL_WATERFALL_STEP, [
         this.initialStep.bind(this),
-        this.finalStep.bind(this),
+        this.finalStep.bind(this)
       ])
     );
 
@@ -45,10 +45,10 @@ export class ConfirmEmailStep extends ComponentDialog {
     const callbackBotDetails = stepContext.options as CallbackBotDetails;
 
     // Set the text for the prompt
-    const standardMsg = i18n.__("confirmEmailStepStandMsg");
+    const standardMsg = i18n.__('confirmEmailStepStandMsg');
 
     // Set the text for the retry prompt
-    const retryMsg = i18n.__("confirmEmailStepRetryMsg");
+    const retryMsg = i18n.__('confirmEmailStepRetryMsg');
 
     // Check if the error count is greater than the max threshold
     if (callbackBotDetails.errorCount.confirmEmailStep >= MAX_ERROR_COUNT) {
@@ -56,7 +56,7 @@ export class ConfirmEmailStep extends ComponentDialog {
       callbackBotDetails.masterError = true;
 
       // Set master error message to send
-      const errorMsg = i18n.__("masterErrorMsg");
+      const errorMsg = i18n.__('masterErrorMsg');
 
       // Send master error message
       await stepContext.context.sendActivity(errorMsg);
@@ -73,7 +73,7 @@ export class ConfirmEmailStep extends ComponentDialog {
       callbackBotDetails.confirmEmailStep === -1
     ) {
       // Setup the prompt message
-      let promptMsg = "";
+      let promptMsg = '';
       // The current step is an error state
       if (callbackBotDetails.confirmEmailStep === -1) {
         promptMsg = retryMsg;
@@ -81,14 +81,14 @@ export class ConfirmEmailStep extends ComponentDialog {
         promptMsg = standardMsg;
       }
 
-      const promptOptions = i18n.__("confirmEmailStepStandardPromptOptions");
+      const promptOptions = i18n.__('confirmEmailStepStandardPromptOptions');
 
       const promptDetails = {
         prompt: ChoiceFactory.forChannel(
           stepContext.context,
           promptOptions,
           promptMsg
-        ),
+        )
       };
 
       return await stepContext.prompt(TEXT_PROMPT, promptDetails);
@@ -105,14 +105,14 @@ export class ConfirmEmailStep extends ComponentDialog {
     // Get the user details / state machine
     const callbackBotDetails = stepContext.options;
     let luisRecognizer;
-    let lang = "en";
+    let lang = 'en';
     // Language check
     // Then change LUIZ appID
     if (
-      stepContext.context.activity.locale.toLowerCase() === "fr-ca" ||
-      stepContext.context.activity.locale.toLowerCase() === "fr-fr"
+      stepContext.context.activity.locale.toLowerCase() === 'fr-ca' ||
+      stepContext.context.activity.locale.toLowerCase() === 'fr-fr'
     ) {
-      lang = "fr";
+      lang = 'fr';
     }
     // LUIZ Recogniser processing
 
@@ -123,27 +123,27 @@ export class ConfirmEmailStep extends ComponentDialog {
     );
 
     // Top intent tell us which cognitive service to use.
-    const intent = LuisRecognizer.topIntent(recognizerResult, "None", 0.5);
+    const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.5);
 
     switch (intent) {
       // Proceed
       // Not - adding these extra intent checks because of a bug with the french happy path
-      case "promptConfirmSendEmailYes":
-      case "promptConfirmNotifyYes":
-      case "promptConfirmYes":
-        console.log("INTENT: ", intent);
+      case 'promptConfirmSendEmailYes':
+      case 'promptConfirmNotifyYes':
+      case 'promptConfirmYes':
+        console.log('INTENT: ', intent);
         callbackBotDetails.confirmEmailStep = true;
         if (callbackBotDetails.preferredEmailAndText !== true) {
-          const confirmMsg = i18n.__("getUserEmailStepConfirmMsg");
+          const confirmMsg = i18n.__('getUserEmailStepConfirmMsg');
           await stepContext.context.sendActivity(confirmMsg);
         }
 
         return await stepContext.endDialog(callbackBotDetails);
 
       // Don't Proceed
-      case "promptConfirmEmailNo":
-      case "promptConfirmNo":
-        console.log("INTENT: ", intent);
+      case 'promptConfirmEmailNo':
+      case 'promptConfirmNo':
+        console.log('INTENT: ', intent);
         // if email is incorrect, go to setup a new email dialog
         callbackBotDetails.confirmEmailStep = false;
         return await stepContext.replaceDialog(
@@ -155,7 +155,7 @@ export class ConfirmEmailStep extends ComponentDialog {
       // Could not understand / None intent
       default: {
         // Catch all
-        console.log("NONE INTENT");
+        console.log('NONE INTENT');
         callbackBotDetails.confirmEmailStep = -1;
         callbackBotDetails.errorCount.confirmEmailStep++;
 

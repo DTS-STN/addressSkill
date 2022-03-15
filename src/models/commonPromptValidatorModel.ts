@@ -3,11 +3,11 @@ export class CommonPromptValidatorModel {
     public result: string;
     public promptCode: string;
     public status: boolean;
-    public intents: Array<string>;
+    public intents: string[];
     public maxRetryCount: number;
     public initialPrompt: string;
 
-    constructor(intents: Array<string>, maxRetryCount: number, promptCode: string,initialPrompt: string){
+    constructor(intents: string[], maxRetryCount: number, promptCode: string,initialPrompt: string){
         this.retryCount = 0;
         this.intents = intents;
         this.maxRetryCount = maxRetryCount ?? 4;

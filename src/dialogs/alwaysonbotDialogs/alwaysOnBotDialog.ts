@@ -1,4 +1,4 @@
-import { ActivityTypes, EndOfConversationCodes, StatePropertyAccessor, TurnContext } from "botbuilder";
+import { ActivityTypes, EndOfConversationCodes, StatePropertyAccessor, TurnContext } from 'botbuilder';
 import {
     ChoicePrompt, ComponentDialog,
     DialogSet,
@@ -7,24 +7,24 @@ import {
     DialogTurnStatus, PromptValidatorContext, TextPrompt,
     WaterfallDialog,
     WaterfallStepContext
-} from "botbuilder-dialogs";
-import { Choice } from "../../../node_modules/botbuilder-dialogs/src/choices/findChoices";
-import { FEED_BACK_STEP } from "./Common/feedBackStep";
-import { UpdateProfileStep, UPDATE_PROFILE_STEP } from "./UpdateProfile/updateProfileStep";
+} from 'botbuilder-dialogs';
+import { Choice } from '../../../node_modules/botbuilder-dialogs/src/choices/findChoices';
+import { FEED_BACK_STEP } from './Common/feedBackStep';
+import { UpdateProfileStep, UPDATE_PROFILE_STEP } from './UpdateProfile/updateProfileStep';
 
 
-export const ALWAYS_ON_BOT_DIALOG_STEP = "ALWAYS_ON_BOT_DIALOG_STEP";
+export const ALWAYS_ON_BOT_DIALOG_STEP = 'ALWAYS_ON_BOT_DIALOG_STEP';
 
 export class AlwaysOnBotDialog extends ComponentDialog {
 
     constructor() {
         super(ALWAYS_ON_BOT_DIALOG_STEP);
 
-        if (!UpdateProfileStep) throw new Error("[MainDialog]: Missing parameter \"updateProfileDialog\" is required");
+        if (!UpdateProfileStep) throw new Error('[MainDialog]: Missing parameter "updateProfileDialog" is required');
 
         // Define the main dialog and its related components.
         // This is a sample "book a flight" dialog.
-        this.addDialog(new TextPrompt("TEXT_PROMPT"))
+        this.addDialog(new TextPrompt('TEXT_PROMPT'))
             .addDialog(new UpdateProfileStep())
             .addDialog(new WaterfallDialog(ALWAYS_ON_BOT_DIALOG_STEP, [
                 this.introStep.bind(this)
@@ -69,10 +69,10 @@ export class AlwaysOnBotDialog extends ComponentDialog {
      * Passing current dialog name to common choice dialog.
      */
     private async introStep(stepContext: WaterfallStepContext): Promise<DialogTurnResult> {
-        
+
         return await stepContext.replaceDialog(UPDATE_PROFILE_STEP, UpdateProfileStep);
     }
 }
-   
+
 
 

@@ -3,21 +3,21 @@ import {
   ComponentDialog,
   WaterfallDialog,
   ChoiceFactory,
-  WaterfallStepContext,
-} from "botbuilder-dialogs";
+  WaterfallStepContext
+} from 'botbuilder-dialogs';
 
-import { LuisRecognizer } from "botbuilder-ai";
+import { LuisRecognizer } from 'botbuilder-ai';
 
-import i18n from "../locales/i18nConfig";
-import { GET_USER_PHONE_NUMBER_STEP } from "./getUserPhoneNumberStep";
-import { CallbackBotDetails } from "./callbackBotDetails";
-import { CallbackRecognizer } from "./callbackRecognizer";
+import i18n from '../locales/i18nConfig';
+import { GET_USER_PHONE_NUMBER_STEP } from './getUserPhoneNumberStep';
+import { CallbackBotDetails } from './callbackBotDetails';
+import { CallbackRecognizer } from './callbackRecognizer';
 
-const TEXT_PROMPT = "TEXT_PROMPT";
+const TEXT_PROMPT = 'TEXT_PROMPT';
 export const CONFIRM_CALLBACK_PHONE_NUMBER_STEP =
-  "CONFIRM_CALLBACK_PHONE_NUMBER_STEP";
+  'CONFIRM_CALLBACK_PHONE_NUMBER_STEP';
 const CONFIRM_CALLBACK_PHONE_NUMBER_WATERFALL_STEP =
-  "CONFIRM_CALLBACK_PHONE_NUMBER_WATERFALL_STEP";
+  'CONFIRM_CALLBACK_PHONE_NUMBER_WATERFALL_STEP';
 
 const MAX_ERROR_COUNT = 3;
 
@@ -31,7 +31,7 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
     this.addDialog(
       new WaterfallDialog(CONFIRM_CALLBACK_PHONE_NUMBER_WATERFALL_STEP, [
         this.initialStep.bind(this),
-        this.finalStep.bind(this),
+        this.finalStep.bind(this)
       ])
     );
 
@@ -47,10 +47,10 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
     const callbackBotDetails = stepContext.options as CallbackBotDetails;
 
     // Set the text for the prompt
-    const standardMsg = i18n.__("confirmCallbackPhoneNumberStepStandardMsg");
+    const standardMsg = i18n.__('confirmCallbackPhoneNumberStepStandardMsg');
 
     // Set the text for the retry prompt
-    const retryMsg = i18n.__("confirmCallbackPhoneNumberStepRetryMsg");
+    const retryMsg = i18n.__('confirmCallbackPhoneNumberStepRetryMsg');
 
     // Check if the error count is greater than the max threshold
     if (
@@ -61,7 +61,7 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
       callbackBotDetails.masterError = true;
 
       // Set master error message to send
-      const errorMsg = i18n.__("masterErrorMsg");
+      const errorMsg = i18n.__('masterErrorMsg');
 
       // Send master error message
       await stepContext.context.sendActivity(errorMsg);
@@ -78,9 +78,9 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
       callbackBotDetails.confirmCallbackPhoneNumberStep === -1
     ) {
       // Setup the prompt message
-      let promptMsg = "";
+      let promptMsg = '';
       const promptOptions: any = i18n.__(
-        "confirmCallbackPhoneNumberStepStandardPromptOptions"
+        'confirmCallbackPhoneNumberStepStandardPromptOptions'
       );
       // The current step is an error state
       if (callbackBotDetails.confirmCallbackPhoneNumberStep === -1) {
@@ -94,7 +94,7 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
           stepContext.context,
           promptOptions,
           promptMsg
-        ),
+        )
       };
 
       return await stepContext.prompt(TEXT_PROMPT, promptDetails);
@@ -111,14 +111,14 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
     // Get the user details / state machine
     const callbackBotDetails = stepContext.options as CallbackBotDetails;
     let luisRecognizer;
-    let lang = "en";
+    let lang = 'en';
     // Language check
     // Then change LUIZ appID when initial
     if (
-      stepContext.context.activity.locale.toLowerCase() === "fr-ca" ||
-      stepContext.context.activity.locale.toLowerCase() === "fr-fr"
+      stepContext.context.activity.locale.toLowerCase() === 'fr-ca' ||
+      stepContext.context.activity.locale.toLowerCase() === 'fr-fr'
     ) {
-      lang = "fr";
+      lang = 'fr';
     }
 
     // LUIZ Recogniser processing
@@ -130,23 +130,23 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
     );
 
     // Top intent tell us which cognitive service to use.
-    const intent = LuisRecognizer.topIntent(recognizerResult, "None", 0.5);
+    const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.5);
 
-    const closeMsg = i18n.__("confirmNotifyROEReceivedStepCloseMsg");
+    const closeMsg = i18n.__('confirmNotifyROEReceivedStepCloseMsg');
 
     switch (intent) {
       // Proceed
       // Not - adding these extra intent checks because of a bug with the french happy path
 
-      case "promptConfirmYes":
-      case "promptConfirmPhoneYes":
-        console.log("confirmCallbackPhoneNumberStep INTENT: ", intent);
+      case 'promptConfirmYes':
+      case 'promptConfirmPhoneYes':
+        console.log('confirmCallbackPhoneNumberStep INTENT: ', intent);
         callbackBotDetails.confirmCallbackPhoneNumberStep = true;
         //  const confirmMsg = i18n.__('getUserPhoneConfirmMsg');
         // await stepContext.context.sendActivity(confirmMsg);
-        const firstWelcomeMsg = i18n.__("getCallbackScheduleStandardMsg");
-        const standardMsgContinue = i18n.__("confirmAuthStepMsg");
-        const confirmationCodeMsg = i18n.__("confirmAuthWordStepStandardMsg");
+        const firstWelcomeMsg = i18n.__('getCallbackScheduleStandardMsg');
+        const standardMsgContinue = i18n.__('confirmAuthStepMsg');
+        const confirmationCodeMsg = i18n.__('confirmAuthWordStepStandardMsg');
         await stepContext.context.sendActivity(firstWelcomeMsg);
         await stepContext.context.sendActivity(standardMsgContinue);
         await stepContext.context.sendActivity(confirmationCodeMsg);
@@ -154,8 +154,8 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
 
       // Don't Proceed
 
-      case "promptConfirmNo":
-        console.log("confirmCallbackPhoneNumberStep INTENT: ", intent);
+      case 'promptConfirmNo':
+        console.log('confirmCallbackPhoneNumberStep INTENT: ', intent);
         callbackBotDetails.confirmCallbackPhoneNumberStep = false;
 
         return await stepContext.replaceDialog(
@@ -165,7 +165,7 @@ export class ConfirmCallbackPhoneNumberStep extends ComponentDialog {
       // Could not understand / None intent
       default: {
         // Catch all
-        console.log("confirmCallbackPhoneNumberStep NONE INTENT");
+        console.log('confirmCallbackPhoneNumberStep NONE INTENT');
         callbackBotDetails.confirmCallbackPhoneNumberStep = -1;
         callbackBotDetails.errorCount.confirmCallbackPhoneNumberStep++;
 

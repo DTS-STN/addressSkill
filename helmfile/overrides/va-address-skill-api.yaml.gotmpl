@@ -52,7 +52,7 @@ secrets:
       - name: SINGLE_SECRET_NAME
         value: oas-unblock-api-az-credentials
       - name: SECRET_LIST
-        value: "address-skill-mvp-id,address-skill-mvp-password,bdm-dev-LuisAppIdEN,bdm-dev-LuisAPIKeyEN,bdm-dev-LuisAPIHostNameEN,bdm-dev-LuisAppIdFR,bdm-dev-LuisAPIKeyFR,bdm-dev-LuisAPIHostNameFR,bdm-dev-AddressAPIUrl"
+        value: "address-skill-mvp-id,address-skill-mvp-password,bdm-dev-LuisAppIdEN,bdm-dev-LuisAPIKeyEN,bdm-dev-LuisAPIHostNameEN,bdm-dev-LuisAppIdFR,bdm-dev-LuisAPIKeyFR,bdm-dev-LuisAPIHostNameFR,bdm-dev-AddressAPIUrl,bdm-dev-AllowedCallers"
 extraEnv:
     - name: MicrosoftAppId
       valueFrom:
@@ -99,3 +99,8 @@ extraEnv:
         secretKeyRef:
           name: oas-unblock-api-az-credentials
           key: bdm-dev-AddressAPIUrl
+    - name: AllowedCallers
+      valueFrom:
+        secretKeyRef:
+          name: oas-unblock-api-az-credentials
+          key: bdm-dev-AllowedCallers

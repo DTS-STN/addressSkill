@@ -1,18 +1,18 @@
-import { LuisRecognizer } from "botbuilder-ai";
+import { LuisRecognizer } from 'botbuilder-ai';
 import {
   TextPrompt,
   ComponentDialog,
   WaterfallDialog,
   ChoiceFactory,
-  WaterfallStepContext,
-} from "botbuilder-dialogs";
-import { CallbackBotDetails } from "./callbackBotDetails";
+  WaterfallStepContext
+} from 'botbuilder-dialogs';
+import { CallbackBotDetails } from './callbackBotDetails';
 
-import i18n from "../locales/i18nConfig";
+import i18n from '../locales/i18nConfig';
 
-const TEXT_PROMPT = "TEXT_PROMPT";
-export const CONFIRM_AUTH_WORD_STEP = "CONFIRM_AUTH_WORD_STEP";
-const CONFIRM_AUTH_WORD_WATERFALL_STEP = "CONFIRM_AUTH_WORD_WATERFALL_STEP";
+const TEXT_PROMPT = 'TEXT_PROMPT';
+export const CONFIRM_AUTH_WORD_STEP = 'CONFIRM_AUTH_WORD_STEP';
+const CONFIRM_AUTH_WORD_WATERFALL_STEP = 'CONFIRM_AUTH_WORD_WATERFALL_STEP';
 
 const MAX_ERROR_COUNT = 3;
 
@@ -26,7 +26,7 @@ export class ConfirmAuthWordStep extends ComponentDialog {
     this.addDialog(
       new WaterfallDialog(CONFIRM_AUTH_WORD_WATERFALL_STEP, [
         this.initialStep.bind(this),
-        this.finalStep.bind(this),
+        this.finalStep.bind(this)
       ])
     );
 
@@ -42,17 +42,17 @@ export class ConfirmAuthWordStep extends ComponentDialog {
     const callbackBotDetails = stepContext.options as CallbackBotDetails;
 
     // Set the text for the prompt
-    const standardMsg = i18n.__("confirmAuthWordStepStandardMsg");
-    const standardMsgContinue = i18n.__("confirmAuthStepMsg");
-    const standardMsgEnd = i18n.__("confirmAuthWordMsg");
+    const standardMsg = i18n.__('confirmAuthWordStepStandardMsg');
+    const standardMsgContinue = i18n.__('confirmAuthStepMsg');
+    const standardMsgEnd = i18n.__('confirmAuthWordMsg');
 
-    const retryMsg = i18n.__("confirmAuthWordStepRetryMsg");
+    const retryMsg = i18n.__('confirmAuthWordStepRetryMsg');
     // Check if the error count is greater than the max threshold
     if (callbackBotDetails.errorCount.confirmAuthWordStep >= MAX_ERROR_COUNT) {
       // Throw the master error flag
       callbackBotDetails.masterError = true;
       // Set master error message to send
-      const errorMsg = i18n.__("masterErrorMsg");
+      const errorMsg = i18n.__('masterErrorMsg');
 
       // Send master error message
       await stepContext.context.sendActivity(errorMsg);
@@ -70,13 +70,13 @@ export class ConfirmAuthWordStep extends ComponentDialog {
     ) {
       const authCode = this.generateAuthCode();
       callbackBotDetails.authCode = authCode;
-      const standMsg = standardMsg + " " + authCode;
+      const standMsg = standardMsg + ' ' + authCode;
       // Setup the prompt message
       await stepContext.context.sendActivity(standMsg);
       await stepContext.context.sendActivity(standardMsgContinue);
       await stepContext.context.sendActivity(standardMsgEnd);
-      const goodbyeMsg = i18n.__("callbackGoodByeGreetingMsg");
-      let promptMsg = "";
+      const goodbyeMsg = i18n.__('callbackGoodByeGreetingMsg');
+      let promptMsg = '';
       // The current step is an error state
       if (callbackBotDetails.confirmAuthWordStep === -1) {
         promptMsg = retryMsg;
@@ -84,7 +84,7 @@ export class ConfirmAuthWordStep extends ComponentDialog {
         promptMsg = goodbyeMsg;
       }
       const promptOptions = i18n.__(
-        "callbackGoodByeGreetingStandardPromptOptions"
+        'callbackGoodByeGreetingStandardPromptOptions'
       );
 
       const promptDetails = {
@@ -92,7 +92,7 @@ export class ConfirmAuthWordStep extends ComponentDialog {
           stepContext.context,
           promptOptions,
           promptMsg
-        ),
+        )
       };
 
       return await stepContext.prompt(TEXT_PROMPT, promptDetails);
@@ -110,14 +110,14 @@ export class ConfirmAuthWordStep extends ComponentDialog {
     const callbackBotDetails = stepContext.options as CallbackBotDetails;
 
     // Language check
-    let applicationId = "";
-    let endpointKey = "";
-    let endpoint = "";
+    let applicationId = '';
+    let endpointKey = '';
+    let endpoint = '';
 
     // Then change LUIZ appID
     if (
-      stepContext.context.activity.locale.toLowerCase() === "fr-ca" ||
-      stepContext.context.activity.locale.toLowerCase() === "fr-fr"
+      stepContext.context.activity.locale.toLowerCase() === 'fr-ca' ||
+      stepContext.context.activity.locale.toLowerCase() === 'fr-fr'
     ) {
       applicationId = process.env.LuisCallbackAppIdFR;
       endpointKey = process.env.LuisCallbackAPIKeyFR;
@@ -133,11 +133,11 @@ export class ConfirmAuthWordStep extends ComponentDialog {
       {
         applicationId,
         endpointKey,
-        endpoint,
+        endpoint
       },
       {
         includeAllIntents: true,
-        includeInstanceData: true,
+        includeInstanceData: true
       },
       true
     );
@@ -146,24 +146,24 @@ export class ConfirmAuthWordStep extends ComponentDialog {
     const recognizerResult = await recognizer.recognize(stepContext.context);
 
     // Top intent tell us which cognitive service to use.
-    const intent = LuisRecognizer.topIntent(recognizerResult, "None", 0.5);
+    const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.5);
     // Result has come through
     switch (intent) {
-      case "promptConfirmYes":
-        const confirmMsg = i18n.__("callbackGoodByeGreetingMsg");
+      case 'promptConfirmYes':
+        const confirmMsg = i18n.__('callbackGoodByeGreetingMsg');
         callbackBotDetails.confirmAuthWordStep = true;
         await stepContext.context.sendActivity(confirmMsg);
 
         return await stepContext.endDialog(callbackBotDetails);
 
-      case "promptConfirmNo":
-        const closeMsg = i18n.__("callbackCloseMsg");
+      case 'promptConfirmNo':
+        const closeMsg = i18n.__('callbackCloseMsg');
         callbackBotDetails.confirmAuthWordStep = true;
         await stepContext.context.sendActivity(closeMsg);
 
         return await stepContext.endDialog(callbackBotDetails);
       // No result provided
-      case "None":
+      case 'None':
         callbackBotDetails.confirmAuthWordStep = -1;
         callbackBotDetails.errorCount.confirmAuthWordStep++;
 

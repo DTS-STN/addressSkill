@@ -24,7 +24,7 @@ export class AddressDetails{
          // State machine that stores the error counts of each step
     this.errorCount = {
         getAddressesStep: 0,
-        updateAddressStep: -1,
+        updateAddressStep: -1
       };
     }
 }

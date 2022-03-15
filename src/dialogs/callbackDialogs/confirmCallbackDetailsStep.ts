@@ -3,18 +3,18 @@ import {
   ComponentDialog,
   WaterfallDialog,
   ChoiceFactory,
-  WaterfallStepContext,
-} from "botbuilder-dialogs";
+  WaterfallStepContext
+} from 'botbuilder-dialogs';
 
-import { LuisRecognizer } from "botbuilder-ai";
+import { LuisRecognizer } from 'botbuilder-ai';
 
-import i18n from "../locales/i18nConfig";
-import { CallbackBotDetails } from "./callbackBotDetails";
+import i18n from '../locales/i18nConfig';
+import { CallbackBotDetails } from './callbackBotDetails';
 
-const TEXT_PROMPT = "TEXT_PROMPT";
-export const CONFIRM_CALLBACK_DETAILS_STEP = "CONFIRM_CALLBACK_DETAILS_STEP";
+const TEXT_PROMPT = 'TEXT_PROMPT';
+export const CONFIRM_CALLBACK_DETAILS_STEP = 'CONFIRM_CALLBACK_DETAILS_STEP';
 const CONFIRM_CALLBACK_DETAILS_STEP_WATERFALL_STEP =
-  "CONFIRM_CALLBACK_DETAILS_STEP_WATERFALL_STEP";
+  'CONFIRM_CALLBACK_DETAILS_STEP_WATERFALL_STEP';
 
 const MAX_ERROR_COUNT = 3;
 
@@ -28,7 +28,7 @@ export class ConfirmCallbackDetailsStep extends ComponentDialog {
     this.addDialog(
       new WaterfallDialog(CONFIRM_CALLBACK_DETAILS_STEP_WATERFALL_STEP, [
         this.initialStep.bind(this),
-        this.finalStep.bind(this),
+        this.finalStep.bind(this)
       ])
     );
 
@@ -51,7 +51,7 @@ export class ConfirmCallbackDetailsStep extends ComponentDialog {
     const callbackBotDetails = stepContext.options;
 
     // Set the text for the prompt
-    const standardMsg = i18n.__("confirmCallbackDetailsStepStandardMsg");
+    const standardMsg = i18n.__('confirmCallbackDetailsStepStandardMsg');
 
     // Check if the error count is greater than the max threshold
     if (
@@ -62,7 +62,7 @@ export class ConfirmCallbackDetailsStep extends ComponentDialog {
       callbackBotDetails.masterError = true;
 
       // Set error message to send
-      const errorMsg = i18n.__("confirmSendEmailStepErrorMsg");
+      const errorMsg = i18n.__('confirmSendEmailStepErrorMsg');
 
       // Send error message
       await stepContext.context.sendActivity(errorMsg);
@@ -106,14 +106,14 @@ export class ConfirmCallbackDetailsStep extends ComponentDialog {
     const callbackBotDetails = stepContext.options;
 
     // Language check
-    let applicationId = "";
-    let endpointKey = "";
-    let endpoint = "";
+    let applicationId = '';
+    let endpointKey = '';
+    let endpoint = '';
 
     // Then change LUIZ appID
     if (
-      stepContext.context.activity.locale.toLowerCase() === "fr-ca" ||
-      stepContext.context.activity.locale.toLowerCase() === "fr-fr"
+      stepContext.context.activity.locale.toLowerCase() === 'fr-ca' ||
+      stepContext.context.activity.locale.toLowerCase() === 'fr-fr'
     ) {
       applicationId = process.env.LuisAppIdFR;
       endpointKey = process.env.LuisAPIKeyFR;
@@ -141,19 +141,19 @@ export class ConfirmCallbackDetailsStep extends ComponentDialog {
     //   const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.50);
 
     // This message is sent if the user selects that they don't want to continue
-    const intent: any = "promptConfirmYes";
+    const intent: any = 'promptConfirmYes';
     switch (intent) {
       // Proceed
-      case "promptConfirmYes":
-      case "promptConfirmSendEmailYes":
-        console.log("INTENT: ", intent);
+      case 'promptConfirmYes':
+      case 'promptConfirmSendEmailYes':
+        console.log('INTENT: ', intent);
         callbackBotDetails.confirmCallbackDetailsStep = true;
         return await stepContext.endDialog(callbackBotDetails);
 
       // Could not understand / None intent
       default: {
         // Catch all
-        console.log("NONE INTENT");
+        console.log('NONE INTENT');
         callbackBotDetails.confirmCallbackDetailsStep = -1;
         callbackBotDetails.errorCount.confirmCallbackDetailsStep++;
 

@@ -1,18 +1,18 @@
-import { LuisRecognizer } from "botbuilder-ai";
+import { LuisRecognizer } from 'botbuilder-ai';
 import {
     Choice, ChoiceFactory,
     ChoicePrompt, ComponentDialog, ListStyle, PromptValidatorContext, WaterfallDialog,
     WaterfallStepContext
-} from "botbuilder-dialogs";
-import { adaptiveCard } from "../../../../cards";
-import { callbackCard } from "../../../../cards/callbackCard";
-import { CommonPromptValidatorModel } from "../../../../models/commonPromptValidatorModel";
-import { LUISAlwaysOnBotSetup } from "../../alwaysOnBotRecognizer";
-import i18n from "../../../locales/i18nConfig";
+} from 'botbuilder-dialogs';
+import { adaptiveCard } from '../../../../cards';
+import { callbackCard } from '../../../../cards/callbackCard';
+import { CommonPromptValidatorModel } from '../../../../models/commonPromptValidatorModel';
+import { LUISAlwaysOnBotSetup } from '../../alwaysOnBotRecognizer';
+import i18n from '../../../locales/i18nConfig';
 
-const CHOICE_PROMPT = "CHOICE_PROMPT";
-export const COMMON_CHOICE_CHECK_STEP = "COMMON_CHOICE_CHECK_STEP";
-const COMMON_CHOICE_CHECK_WATERFALL_STEP = "COMMON_CHOICE_CHECK_WATERFALL_STEP";
+const CHOICE_PROMPT = 'CHOICE_PROMPT';
+export const COMMON_CHOICE_CHECK_STEP = 'COMMON_CHOICE_CHECK_STEP';
+const COMMON_CHOICE_CHECK_WATERFALL_STEP = 'COMMON_CHOICE_CHECK_WATERFALL_STEP';
 
 export class CommonChoiceCheckStep extends ComponentDialog {
     constructor() {
@@ -31,16 +31,16 @@ export class CommonChoiceCheckStep extends ComponentDialog {
         return true;
     }
     /**
-    * 1. Initial step in the waterfall.
-    * 2. prompt user with a message based on the step in the flow
-    */
+     * 1. Initial step in the waterfall.
+     * 2. prompt user with a message based on the step in the flow
+     */
     async promptStep(stepContext: WaterfallStepContext) {
         const commonPromptValidatorModel = stepContext.options as CommonPromptValidatorModel;
         let promptMessage: string;
         // displays initial prompt message to the user
         if (commonPromptValidatorModel.retryCount === 0) {
 
-            if(!(commonPromptValidatorModel.initialPrompt === "")){
+            if(!(commonPromptValidatorModel.initialPrompt === '')){
 
                 promptMessage = i18n.__(`${commonPromptValidatorModel.promptCode}PromptMessage`);
 
@@ -71,7 +71,7 @@ export class CommonChoiceCheckStep extends ComponentDialog {
     async finalStep(stepContext: WaterfallStepContext) {
         const recognizer = LUISAlwaysOnBotSetup(stepContext);
         const recognizerResult = await recognizer.recognize(stepContext.context);
-        const intent = LuisRecognizer.topIntent(recognizerResult, "None", 0.5);
+        const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.5);
         const commonPromptValidatorModel = stepContext.options as CommonPromptValidatorModel;
 
         const matchFound = commonPromptValidatorModel.intents.includes(intent);

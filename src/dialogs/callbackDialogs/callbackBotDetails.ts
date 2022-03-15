@@ -44,10 +44,10 @@ export class CallbackBotDetails {
     this.confirmEmailStep = null;
     this.confirmPhoneStep = null;
     this.confirmCallbackDetailsStep = null;
-    this.date = "";
-    this.phoneNumber = "";
-    this.time = "";
-    this.authCode = "";
+    this.date = '';
+    this.phoneNumber = '';
+    this.time = '';
+    this.authCode = '';
     this.confirmCallbackPhoneNumberStep = null;
 
     // State machine that stores the error counts of each step
@@ -62,7 +62,7 @@ export class CallbackBotDetails {
       getPreferredMethodOfContactStep: 0,
       confirmEmailStep: 0,
       confirmPhoneStep: 0,
-      confirmCallbackPhoneNumberStep: 0,
+      confirmCallbackPhoneNumberStep: 0
     };
 
     // TODO: Refactor and add an object that tracks status perhaps something like below
@@ -84,10 +84,10 @@ export class CallbackBotDetails {
           phoneNumber: this.phoneNumber,
           date: this.date,
           time: this.time,
-          authCode: this.authCode,
+          authCode: this.authCode
         }
       ),
       null,
-      "  "
+      '  '
     );
 }

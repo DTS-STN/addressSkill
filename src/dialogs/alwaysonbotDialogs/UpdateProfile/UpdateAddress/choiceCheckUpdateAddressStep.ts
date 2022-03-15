@@ -1,19 +1,19 @@
-import { LuisRecognizer } from "botbuilder-ai";
+import { LuisRecognizer } from 'botbuilder-ai';
 import {
     Choice, ChoiceFactory,TextPrompt,
     ChoicePrompt, ComponentDialog, ListStyle, PromptValidatorContext, WaterfallDialog,
     WaterfallStepContext
-} from "botbuilder-dialogs";
-import { CommonPromptValidatorModel } from "../../../../models/commonPromptValidatorModel";
+} from 'botbuilder-dialogs';
+import { CommonPromptValidatorModel } from '../../../../models/commonPromptValidatorModel';
 
-import { LUISAlwaysOnBotSetup } from "../../alwaysOnBotRecognizer";
+import { LUISAlwaysOnBotSetup } from '../../alwaysOnBotRecognizer';
 
-import i18n from "../../../locales/i18nConfig";
+import i18n from '../../../locales/i18nConfig';
 
-const CHOICE_PROMPT = "CHOICE_PROMPT";
-const TEXT_PROMPT = "TEXT_PROMPT";
-export const CHOICE_CHECK_UPDATE_ADDRESS_STEP = "CHOICE_CHECK_UPDATE_ADDRESS_STEP";
-const CHOICE_CHECK_UPDATE_ADDRESS_WATERFALL_STEP = "CHOICE_CHECK_UPDATE_ADDRESS_WATERFALL_STEP";
+const CHOICE_PROMPT = 'CHOICE_PROMPT';
+const TEXT_PROMPT = 'TEXT_PROMPT';
+export const CHOICE_CHECK_UPDATE_ADDRESS_STEP = 'CHOICE_CHECK_UPDATE_ADDRESS_STEP';
+const CHOICE_CHECK_UPDATE_ADDRESS_WATERFALL_STEP = 'CHOICE_CHECK_UPDATE_ADDRESS_WATERFALL_STEP';
 
 export class ChoiceCheckUpdateAddressStep extends ComponentDialog {
     constructor() {
@@ -32,15 +32,15 @@ export class ChoiceCheckUpdateAddressStep extends ComponentDialog {
         return true;
     }
     /**
-    * 1. Initial step in the waterfall.
-    * 2. prompt user with a message based on the step in the flow
-    */
+     * 1. Initial step in the waterfall.
+     * 2. prompt user with a message based on the step in the flow
+     */
     async promptStep(stepContext: WaterfallStepContext) {
         const commonPromptValidatorModel = stepContext.options as CommonPromptValidatorModel;
         let promptMessage: string;
         // displays initial prompt message to the user
         if (commonPromptValidatorModel.retryCount === 0) {
-            if(!(commonPromptValidatorModel.initialPrompt === "")){
+            if(!(commonPromptValidatorModel.initialPrompt === '')){
                 promptMessage = commonPromptValidatorModel.initialPrompt;
             }
         }
@@ -54,7 +54,7 @@ export class ChoiceCheckUpdateAddressStep extends ComponentDialog {
             promptMessage = i18n.__(`${commonPromptValidatorModel.promptCode}RetryPromptMessage`);
         }
 
-        //displays prompt options to the user
+        // displays prompt options to the user
         const promptOptions = i18n.__(`${commonPromptValidatorModel.promptCode}PromptOptions`);
         return await stepContext.prompt(CHOICE_PROMPT, {
             prompt: promptMessage,
@@ -69,7 +69,7 @@ export class ChoiceCheckUpdateAddressStep extends ComponentDialog {
     async finalStep(stepContext: WaterfallStepContext) {
         const recognizer = LUISAlwaysOnBotSetup(stepContext);
         const recognizerResult = await recognizer.recognize(stepContext.context);
-        const intent = LuisRecognizer.topIntent(recognizerResult, "None", 0.5);
+        const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.5);
         const commonPromptValidatorModel = stepContext.options as CommonPromptValidatorModel;
 
         const matchFound = commonPromptValidatorModel.intents.includes(intent);

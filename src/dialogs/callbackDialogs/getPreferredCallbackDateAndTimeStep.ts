@@ -3,20 +3,20 @@ import {
   ComponentDialog,
   WaterfallDialog,
   ChoiceFactory,
-  WaterfallStepContext,
-} from "botbuilder-dialogs";
+  WaterfallStepContext
+} from 'botbuilder-dialogs';
 
-import { LuisRecognizer } from "botbuilder-ai";
-import { CallbackBotDetails } from "./callbackBotDetails";
+import { LuisRecognizer } from 'botbuilder-ai';
+import { CallbackBotDetails } from './callbackBotDetails';
 // This is for the i18n stuff
-import i18n from "../locales/i18nConfig";
-const CHOICE_PROMPT = "CHOICE_PROMPT";
-const TEXT_PROMPT = "TEXT_PROMPT";
-const NUMBER_PROMPT = "NUMBER_PROMPT";
+import i18n from '../locales/i18nConfig';
+const CHOICE_PROMPT = 'CHOICE_PROMPT';
+const TEXT_PROMPT = 'TEXT_PROMPT';
+const NUMBER_PROMPT = 'NUMBER_PROMPT';
 export const GET_PREFERRED_CALLBACK_DATE_AND_TIME_STEP =
-  "GET_PREFERRED_CALLBACK_DATE_AND_TIME_STEP";
+  'GET_PREFERRED_CALLBACK_DATE_AND_TIME_STEP';
 const GET_PREFERRED_CALLBACK_DATE_AND_TIME_WATERFALL_STEP =
-  "GET_PREFERRED_CALLBACK_DATE_AND_TIME_WATERFALL_STEP";
+  'GET_PREFERRED_CALLBACK_DATE_AND_TIME_WATERFALL_STEP';
 
 const MAX_ERROR_COUNT = 3;
 
@@ -32,7 +32,7 @@ export class GetPreferredCallbackDateAndTimeStep extends ComponentDialog {
         this.initialStep.bind(this),
         this.dateStep.bind(this),
         this.timeStep.bind(this),
-        this.finalStep.bind(this),
+        this.finalStep.bind(this)
       ])
     );
 
@@ -55,10 +55,10 @@ export class GetPreferredCallbackDateAndTimeStep extends ComponentDialog {
     const callbackBotDetails = stepContext.options;
 
     // Set the text for the prompt
-    const standardMsg = i18n.__("getPreferredCallbackDateAndTimeStepPromptMsg");
+    const standardMsg = i18n.__('getPreferredCallbackDateAndTimeStepPromptMsg');
 
     // Set the text for the retry prompt
-    const retryMsg = i18n.__("getPreferredCallbackDateAndTimeStepRetryMsg");
+    const retryMsg = i18n.__('getPreferredCallbackDateAndTimeStepRetryMsg');
 
     // Check if the error count is greater than the max threshold
     if (
@@ -79,7 +79,7 @@ export class GetPreferredCallbackDateAndTimeStep extends ComponentDialog {
       callbackBotDetails.getPreferredMethodOfContactStep === -1
     ) {
       // Setup the prompt message
-      let promptMsg = "";
+      let promptMsg = '';
 
       // The current step is an error state
       if (callbackBotDetails.getPreferredCallbackDateAndTimeStep === -1) {
@@ -90,7 +90,7 @@ export class GetPreferredCallbackDateAndTimeStep extends ComponentDialog {
 
       // Set the options for the quick reply buttons
       const promptOptions: any = i18n.__(
-        "getPreferredCallbackDateAndTimeStepStandardPromptOptions"
+        'getPreferredCallbackDateAndTimeStepStandardPromptOptions'
       );
 
       const promptDetails = {
@@ -98,7 +98,7 @@ export class GetPreferredCallbackDateAndTimeStep extends ComponentDialog {
           stepContext.context,
           promptOptions,
           promptMsg
-        ),
+        )
       };
 
       return await stepContext.prompt(TEXT_PROMPT, promptDetails);
@@ -112,11 +112,11 @@ export class GetPreferredCallbackDateAndTimeStep extends ComponentDialog {
     // Running a prompt here means the next WaterfallStep will be run when the users response is received.
     return await stepContext.prompt(CHOICE_PROMPT, {
       choices: ChoiceFactory.toChoices([
-        " Sep 1 2021",
-        "Spe 4 2021",
-        "Sep 19 2021",
+        ' Sep 1 2021',
+        'Spe 4 2021',
+        'Sep 19 2021'
       ]),
-      prompt: "Please choose your prefer date.",
+      prompt: 'Please choose your prefer date.'
     });
   }
 
@@ -127,9 +127,9 @@ export class GetPreferredCallbackDateAndTimeStep extends ComponentDialog {
       // User said "yes" so we will be prompting for the age.
       // WaterfallStep always finishes with the end of the Waterfall or with another dialog, here it is a Prompt Dialog.
       const promptOptions = {
-        choices: ChoiceFactory.toChoices(["10:00 AM", "12:30PM", "1:30PM"]),
-        prompt: "Please choose the available time .",
-        retryPrompt: "The value entered must be in the list.",
+        choices: ChoiceFactory.toChoices(['10:00 AM', '12:30PM', '1:30PM']),
+        prompt: 'Please choose the available time .',
+        retryPrompt: 'The value entered must be in the list.'
       };
 
       return await stepContext.prompt(CHOICE_PROMPT, promptOptions);
@@ -148,14 +148,14 @@ export class GetPreferredCallbackDateAndTimeStep extends ComponentDialog {
     const callbackBotDetails = stepContext.options;
     callbackBotDetails.time = stepContext.result.value;
     // Language check
-    let applicationId = "";
-    let endpointKey = "";
-    let endpoint = "";
+    let applicationId = '';
+    let endpointKey = '';
+    let endpoint = '';
 
     // Then change LUIS appID
     if (
-      stepContext.context.activity.locale.toLowerCase() === "fr-ca" ||
-      stepContext.context.activity.locale.toLowerCase() === "fr-fr"
+      stepContext.context.activity.locale.toLowerCase() === 'fr-ca' ||
+      stepContext.context.activity.locale.toLowerCase() === 'fr-fr'
     ) {
       applicationId = process.env.LuisAppIdFR;
       endpointKey = process.env.LuisAPIKeyFR;
@@ -181,17 +181,17 @@ export class GetPreferredCallbackDateAndTimeStep extends ComponentDialog {
     //  const recognizerResult = await recognizer.recognize(stepContext.context);
     // Setup the possible messages that could go out
     const sendDateAndTimeMsg = i18n.__(
-      "getPreferredCallbackDateAndTimeStepConfirmMsg"
+      'getPreferredCallbackDateAndTimeStepConfirmMsg'
     );
 
     // Top intent tell us which cognitive service to use.
     // const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.50);
     // for demo purpose, right now hard code
-    const intent: string = "dateTime";
+    const intent: string = 'dateTime';
     switch (intent) {
       // Proceed with Email
-      case "dateTime":
-        console.log("INTENT: ", intent);
+      case 'dateTime':
+        console.log('INTENT: ', intent);
         callbackBotDetails.getPreferredCallbackDateAndTimeStep = true;
 
         await stepContext.context.sendActivity(sendDateAndTimeMsg);
@@ -201,7 +201,7 @@ export class GetPreferredCallbackDateAndTimeStep extends ComponentDialog {
       // Could not understand / None intent
       default: {
         // Catch all
-        console.log("NONE INTENT");
+        console.log('NONE INTENT');
         callbackBotDetails.getPreferredCallbackDateAndTimeStep = -1;
         callbackBotDetails.errorCount.getPreferredCallbackDateAndTimeStep++;
 

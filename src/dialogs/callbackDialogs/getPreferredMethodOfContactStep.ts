@@ -2,21 +2,21 @@ import {
   TextPrompt,
   ComponentDialog,
   WaterfallDialog,
-  ChoiceFactory,
-} from "botbuilder-dialogs";
+  ChoiceFactory
+} from 'botbuilder-dialogs';
 
-import { LuisRecognizer } from "botbuilder-ai";
+import { LuisRecognizer } from 'botbuilder-ai';
 
-import i18n from "../locales/i18nConfig";
-import { CallbackRecognizer } from "./callbackRecognizer";
-import { CONFIRM_PHONE_STEP } from "./confirmPhoneStep";
-import { CONFIRM_EMAIL_STEP } from "./confirmEmailStep";
+import i18n from '../locales/i18nConfig';
+import { CallbackRecognizer } from './callbackRecognizer';
+import { CONFIRM_PHONE_STEP } from './confirmPhoneStep';
+import { CONFIRM_EMAIL_STEP } from './confirmEmailStep';
 
-const TEXT_PROMPT = "TEXT_PROMPT";
+const TEXT_PROMPT = 'TEXT_PROMPT';
 export const GET_PREFERRED_METHOD_OF_CONTACT_STEP =
-  "GET_PREFERRED_METHOD_OF_CONTACT_STEP";
+  'GET_PREFERRED_METHOD_OF_CONTACT_STEP';
 const GET_PREFERRED_METHOD_OF_CONTACT_WATERFALL_STEP =
-  "GET_PREFERRED_METHOD_OF_CONTACT_WATERFALL_STEP";
+  'GET_PREFERRED_METHOD_OF_CONTACT_WATERFALL_STEP';
 
 const MAX_ERROR_COUNT = 3;
 
@@ -30,7 +30,7 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
     this.addDialog(
       new WaterfallDialog(GET_PREFERRED_METHOD_OF_CONTACT_WATERFALL_STEP, [
         this.initialStep.bind(this),
-        this.finalStep.bind(this),
+        this.finalStep.bind(this)
       ])
     );
 
@@ -53,10 +53,10 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
     const callbackDetails = stepContext.options;
 
     // Set the text for the prompt
-    const standardMsg = i18n.__("callbackBotDialogWelcomeMsg");
+    const standardMsg = i18n.__('callbackBotDialogWelcomeMsg');
 
     // Set the text for the retry prompt
-    const retryMsg = i18n.__("getPreferredMethodOfContactStepRetryMsg");
+    const retryMsg = i18n.__('getPreferredMethodOfContactStepRetryMsg');
 
     // Check if the error count is greater than the max threshold
     if (
@@ -67,7 +67,7 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
       callbackDetails.masterError = true;
       // End the dialog and pass the updated details state machine
       // Set master error message to send
-      const errorMsg = i18n.__("masterErrorMsg");
+      const errorMsg = i18n.__('masterErrorMsg');
 
       // Send master error message
       await stepContext.context.sendActivity(errorMsg);
@@ -82,8 +82,8 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
       callbackDetails.getPreferredMethodOfContactStep === -1
     ) {
       // Setup the prompt message
-      let promptMsg = "";
-      const queryMsg = i18n.__("callbackConfirmationQueryMsg");
+      let promptMsg = '';
+      const queryMsg = i18n.__('callbackConfirmationQueryMsg');
       // The current step is an error state
       if (callbackDetails.getPreferredMethodOfContactStep === -1) {
         promptMsg = retryMsg;
@@ -93,7 +93,7 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
 
       // Set the options for the quick reply buttons
       const promptOptions = i18n.__(
-        "getPreferredMethodOfContactStepStandardPromptOptions"
+        'getPreferredMethodOfContactStepStandardPromptOptions'
       );
 
       const promptDetails = {
@@ -101,7 +101,7 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
           stepContext.context,
           promptOptions,
           promptMsg
-        ),
+        )
       };
 
       return await stepContext.prompt(TEXT_PROMPT, promptDetails);
@@ -119,14 +119,14 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
     // Get the user details / state machine
     const callbackBotDetails = stepContext.options;
     let luisRecognizer;
-    let lang = "en";
+    let lang = 'en';
     // Language check
     // Then change LUIZ appID
     if (
-      stepContext.context.activity.locale.toLowerCase() === "fr-ca" ||
-      stepContext.context.activity.locale.toLowerCase() === "fr-fr"
+      stepContext.context.activity.locale.toLowerCase() === 'fr-ca' ||
+      stepContext.context.activity.locale.toLowerCase() === 'fr-fr'
     ) {
-      lang = "fr";
+      lang = 'fr';
     }
 
     // LUIZ Recogniser processing
@@ -137,19 +137,19 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
     );
 
     // Setup the possible messages that could go out
-    const sendEmailMsg = i18n.__("confirmEmailStepStandMsg");
-    const sendTextMsg = i18n.__("confirmPhoneStepStandMsg");
-    const sendBothMsg = i18n.__("getPreferredMethodOfContactStepSendBothMsg");
-    const NoNotificationMsg = i18n.__("NoNotificationMsg");
+    const sendEmailMsg = i18n.__('confirmEmailStepStandMsg');
+    const sendTextMsg = i18n.__('confirmPhoneStepStandMsg');
+    const sendBothMsg = i18n.__('getPreferredMethodOfContactStepSendBothMsg');
+    const NoNotificationMsg = i18n.__('NoNotificationMsg');
 
     // Top intent tell us which cognitive service to use.
-    const intent = LuisRecognizer.topIntent(recognizerResult, "None", 0.5);
+    const intent = LuisRecognizer.topIntent(recognizerResult, 'None', 0.5);
 
     switch (intent) {
       // Proceed with Email
-      case "promptConfirmSendEmailYes":
-      case "promptConfirmChoiceEmail":
-        console.log("INTENT choose email: ", intent);
+      case 'promptConfirmSendEmailYes':
+      case 'promptConfirmChoiceEmail':
+        console.log('INTENT choose email: ', intent);
         callbackBotDetails.getPreferredMethodOfContactStep = true;
         callbackBotDetails.preferredEmail = true;
 
@@ -159,8 +159,8 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
         );
 
       // Proceed with Text Message
-      case "promptConfirmChoiceText":
-        console.log("INTENT: ", intent);
+      case 'promptConfirmChoiceText':
+        console.log('INTENT: ', intent);
         callbackBotDetails.getPreferredMethodOfContactStep = true;
         callbackBotDetails.preferredText = true;
         // callbackBotDetails.confirmPhoneStep = null;
@@ -172,23 +172,23 @@ export class GetPreferredMethodOfContactStep extends ComponentDialog {
       // return await stepContext.endDialog(callbackBotDetails);
 
       // Proceed with Both Messages
-      case "promptConfirmChoiceBoth":
-        console.log("INTENT: ", intent);
+      case 'promptConfirmChoiceBoth':
+        console.log('INTENT: ', intent);
         callbackBotDetails.getPreferredMethodOfContactStep = true;
         callbackBotDetails.preferredEmailAndText = true;
         // await stepContext.context.sendActivity(sendBothMsg);
 
         return await stepContext.endDialog(callbackBotDetails);
 
-      case "promptConfirmChoiceNone":
+      case 'promptConfirmChoiceNone':
         // user don't want to receive notification. use this case
-        console.log("INTENT: ", intent);
+        console.log('INTENT: ', intent);
         await stepContext.context.sendActivity(NoNotificationMsg);
         return await stepContext.endDialog(callbackBotDetails);
       // Could not understand / None intent
       default: {
         // Catch all
-        console.log("NONE INTENT");
+        console.log('NONE INTENT');
         callbackBotDetails.getPreferredMethodOfContactStep = -1;
         callbackBotDetails.errorCount.getPreferredMethodOfContactStep++;
 

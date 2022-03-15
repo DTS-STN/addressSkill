@@ -1,16 +1,16 @@
-import { ActivityTypes, EndOfConversationCodes } from "botbuilder";
+import { ActivityTypes, EndOfConversationCodes } from 'botbuilder';
 import {
     Choice, ChoiceFactory, ChoicePrompt, ComponentDialog, DialogTurnResult, PromptValidatorContext, TextPrompt,
     WaterfallDialog,
     WaterfallStepContext
-} from "botbuilder-dialogs";
+} from 'botbuilder-dialogs';
 
-import i18n from "../../locales/i18nConfig";
+import i18n from '../../locales/i18nConfig';
 
-const TEXT_PROMPT = "TEXT_PROMPT";
-const CHOICE_PROMPT = "CHOICE_PROMPT";
-export const FEED_BACK_STEP = "FEED_BACK_STEP";
-const FEED_BACK_WATERFALL_STEP = "FEED_BACK_WATERFALL_STEP";
+const TEXT_PROMPT = 'TEXT_PROMPT';
+const CHOICE_PROMPT = 'CHOICE_PROMPT';
+export const FEED_BACK_STEP = 'FEED_BACK_STEP';
+const FEED_BACK_WATERFALL_STEP = 'FEED_BACK_WATERFALL_STEP';
 
 export class FeedBackStep extends ComponentDialog {
     constructor() {
@@ -31,22 +31,22 @@ export class FeedBackStep extends ComponentDialog {
         return true;
     }
     /**
-   * Initial step in the waterfall. This will prompts service rate card choices to the user.
-   */
+     * Initial step in the waterfall. This will prompts service rate card choices to the user.
+     */
     async feedbackStep(stepContext:WaterfallStepContext): Promise<DialogTurnResult> {
-                const promptText = i18n.__("continueAndFeedRating");
+                const promptText = i18n.__('continueAndFeedRating');
                 let choices = Array<string>();
-                choices = i18n.__("continueAndFeedRatingChoices");
+                choices = i18n.__('continueAndFeedRatingChoices');
                 return await stepContext.prompt(CHOICE_PROMPT, {
                     prompt: promptText,
                     choices: ChoiceFactory.toChoices(choices)
                 });
     }
    /**
-   * This is the final step in waterfall.bot displays thank you message to the user end of the bot.
-   */
+    * This is the final step in waterfall.bot displays thank you message to the user end of the bot.
+    */
     async finalStep(stepContext) {
-            await stepContext.context.sendActivity(i18n.__("continueAndFeedExcellent"));
+            await stepContext.context.sendActivity(i18n.__('continueAndFeedExcellent'));
             return await stepContext.endDialog(this.id);
     }
 }

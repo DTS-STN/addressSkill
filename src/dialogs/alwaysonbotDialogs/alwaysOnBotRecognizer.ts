@@ -22,7 +22,7 @@ export const LUISAlwaysOnBotSetup = (stepContext: any) => {
         applicationId = process.env.LuisAppIdFR;
         endpointKey = process.env.LuisAPIKeyFR;
         endpoint = `https://${process.env.LuisAPIHostNameFR}.cognitiveservices.azure.com`;
-        
+
     } else {
         applicationId = process.env.LuisAppIdEN;
         endpointKey = process.env.LuisAPIKeyEN;
