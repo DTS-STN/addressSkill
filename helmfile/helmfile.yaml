@@ -1,0 +1,23 @@
+environments:
+  benrd:
+  bingrd:
+  dev:
+  prod-blue:
+  prod-green:
+  prototype:
+
+
+releases:
+
+  - name: va-address-skill-{{ requiredEnv "BRANCH" }}
+    chart: ../helm/charts/va-address-skill
+    namespace: va-address-skill-{{ requiredEnv "BRANCH" }}
+    values:
+      - overrides/va-address-skill-api.yaml.gotmpl
+    labels:
+        category: prototype
+        app: va-address-skill
+        tier: api
+    wait: false
+    installed: true
+    force: false

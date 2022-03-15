@@ -16,4 +16,8 @@ test-results.xml
 
 #coverage
 coverage
-.nyc_output 
+.nyc_output
+# history extension
+.history
+
+.DS_Store

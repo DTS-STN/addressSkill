@@ -125,6 +125,13 @@ server.listen(process.env.port || process.env.PORT || 39785, () => {
 // Expose the manifest
 server.get('/manifest/*', restify.plugins.serveStatic({ directory: './manifest', appendRequestPath: false }));
 
+// [OPTIONAL]
+// When deploying azure usually pings the web app server to know the status. The request can be ignored or answered, depending
+// on the implementation. In my case it was logging the errors so I prefer to just reply to the request.
+server.get("/", (req, res, next) => {
+    res.send(200);
+    next();
+  });
 // Listen for incoming activities and route them to your bot main dialog.
 server.post('/api/messages', (req, res) => {
     adapter.process(req, res, async (context) => {
