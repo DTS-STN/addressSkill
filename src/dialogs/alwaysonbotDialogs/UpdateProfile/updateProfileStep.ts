@@ -8,7 +8,7 @@ import { ContinueAndFeedbackStep } from "../Common/continueAndFeedbackStep";
 import { FeedBackStep, FEED_BACK_STEP } from "../Common/feedBackStep";
 import { UpdateAddressStep, UPDATE_ADDRESS_STEP } from "./UpdateAddress/updateAddressStep";
 import { CommonChoiceCheckStep, COMMON_CHOICE_CHECK_STEP } from "../UpdateProfile/UpdateAddress/commonChoiceCheckStep";
-import i18n from "../../locales/i18nconfig";
+import i18n from "../../locales/i18nConfig1";
 import { AddressDetails } from "./UpdateAddress/addressDetails";
 
 
@@ -68,7 +68,7 @@ export class UpdateProfileStep extends ComponentDialog {
             switch (commonPromptValidatorModel.result) {
                 case "UpdateMyAddress":
                     const addressDetails = new AddressDetails;
-                    return await stepContext.replaceDialog(UPDATE_ADDRESS_STEP, addressDetails);  
+                    return await stepContext.replaceDialog(UPDATE_ADDRESS_STEP, addressDetails);
             }
         }
         else {

@@ -1,4 +1,4 @@
-import i18n,{ setLocale } from '../dialogs/locales/i18nConfig';
+import i18n,{ setLocale } from '../dialogs/locales/i18nConfig1';
 
 export const  callbackCard= (locale:string,text:string) => {
     setLocale(locale);

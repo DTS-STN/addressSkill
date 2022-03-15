@@ -8,7 +8,7 @@ import { CommonPromptValidatorModel } from "../../../../models/commonPromptValid
 
 import { LUISAlwaysOnBotSetup } from "../../alwaysOnBotRecognizer";
 
-import i18n from "../../../locales/i18nconfig";
+import i18n from "../../../locales/i18nConfig1";
 
 const CHOICE_PROMPT = "CHOICE_PROMPT";
 const TEXT_PROMPT = "TEXT_PROMPT";
@@ -41,7 +41,7 @@ export class ChoiceCheckUpdateAddressStep extends ComponentDialog {
         // displays initial prompt message to the user
         if (commonPromptValidatorModel.retryCount === 0) {
             if(!(commonPromptValidatorModel.initialPrompt === "")){
-                promptMessage = commonPromptValidatorModel.initialPrompt;   
+                promptMessage = commonPromptValidatorModel.initialPrompt;
             }
         }
         // shows the Master error message when user reaches max retry attempts
@@ -53,17 +53,17 @@ export class ChoiceCheckUpdateAddressStep extends ComponentDialog {
         else {
             promptMessage = i18n.__(`${commonPromptValidatorModel.promptCode}RetryPromptMessage`);
         }
-        
+
         //displays prompt options to the user
         const promptOptions = i18n.__(`${commonPromptValidatorModel.promptCode}PromptOptions`);
         return await stepContext.prompt(CHOICE_PROMPT, {
             prompt: promptMessage,
             choices: ChoiceFactory.toChoices(promptOptions),
             style: ListStyle.suggestedAction
-      
+
         });
-        
-       
+
+
     }
     // storing the intent value to the result and passing it to the common prompt validator class
     async finalStep(stepContext: WaterfallStepContext) {
@@ -81,6 +81,6 @@ export class ChoiceCheckUpdateAddressStep extends ComponentDialog {
         }
         commonPromptValidatorModel.result = intent;
         commonPromptValidatorModel.retryCount++;
-        return await stepContext.replaceDialog(CHOICE_CHECK_UPDATE_ADDRESS_STEP, commonPromptValidatorModel);       
+        return await stepContext.replaceDialog(CHOICE_CHECK_UPDATE_ADDRESS_STEP, commonPromptValidatorModel);
    }
 }

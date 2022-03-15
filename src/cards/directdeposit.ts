@@ -1,4 +1,4 @@
-import i18n, { setLocale } from '../dialogs/locales/i18nConfig';
+import i18n, { setLocale } from '../dialogs/locales/i18nConfig1';
 
 // In practice you'll probably get this from a service
 export const directdeposit = (locale: string) => {

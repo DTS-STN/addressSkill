@@ -1,5 +1,5 @@
 import { setLocale } from 'i18n';
-import i18n from '../dialogs/locales/i18nConfig';
+import i18n from '../dialogs/locales/i18nConfig1';
 // In practice you'll probably get this from a service
 
 export const TextBlock = (Locale:string,text:string) => {

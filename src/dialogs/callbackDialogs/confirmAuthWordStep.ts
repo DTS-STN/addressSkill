@@ -8,7 +8,7 @@ import {
 } from "botbuilder-dialogs";
 import { CallbackBotDetails } from "./callbackBotDetails";
 
-import i18n from "../locales/i18nConfig";
+import i18n from "../locales/i18nConfig1";
 
 const TEXT_PROMPT = "TEXT_PROMPT";
 export const CONFIRM_AUTH_WORD_STEP = "CONFIRM_AUTH_WORD_STEP";

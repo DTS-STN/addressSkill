@@ -7,7 +7,7 @@ import {
 import { CommonPromptValidatorModel } from "../../../models/commonPromptValidatorModel";
 import { LUISAlwaysOnBotSetup } from "../alwaysOnBotRecognizer";
 
-import i18n from "../../locales/i18nconfig";
+import i18n from "../../locales/i18nConfig1";
 import { COMMON_CHOICE_CHECK_STEP } from "../UpdateProfile/UpdateAddress/commonChoiceCheckStep";
 import { UpdateProfileStep, UPDATE_PROFILE_STEP } from "../UpdateProfile/updateProfileStep";
 import { FeedBackStep, FEED_BACK_STEP } from "./feedBackStep";
@@ -46,7 +46,7 @@ export class ContinueAndFeedbackStep extends ComponentDialog {
    * This is the end of the process,either user will go to the main flow or will end the process if there are no action required by the user.
    */
     async continueStep(stepContext:WaterfallStepContext): Promise<DialogTurnResult> {
-       
+
         let commonPromptValidatorModel = new CommonPromptValidatorModel(
             ["promptConfirmYes", "promptConfirmNo"],
             Number(i18n.__("MaxRetryCount")),
@@ -90,7 +90,7 @@ export class ContinueAndFeedbackStep extends ComponentDialog {
             switch (commonPromptValidatorModel.result) {
                 case "UpdateMyAddress":
                     const addressDetails = new AddressDetails;
-                    return await stepContext.replaceDialog(UPDATE_ADDRESS_STEP, addressDetails);  
+                    return await stepContext.replaceDialog(UPDATE_ADDRESS_STEP, addressDetails);
             }
         }
         else {

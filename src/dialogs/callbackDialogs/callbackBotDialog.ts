@@ -25,7 +25,7 @@ import {
   ConfirmCallbackDetailsStep,
   CONFIRM_CALLBACK_DETAILS_STEP,
 } from "./confirmCallbackDetailsStep";
-import i18n from "../locales/i18nConfig";
+import i18n from "../locales/i18nConfig1";
 import { CallbackBotDetails } from "./callbackBotDetails";
 import { StatePropertyAccessor, UserState } from "botbuilder";
 import { ConfirmEmailStep, CONFIRM_EMAIL_STEP } from "./confirmEmailStep";

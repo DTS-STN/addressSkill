@@ -10,7 +10,7 @@ import { CallbackBotDetails } from "./callbackBotDetails";
 import { CallbackRecognizer } from "./callbackRecognizer";
 import { GET_PREFERRED_METHOD_OF_CONTACT_STEP } from "./getPreferredMethodOfContactStep";
 
-import i18n from "../locales/i18nConfig";
+import i18n from "../locales/i18nConfig1";
 
 const TEXT_PROMPT = "TEXT_PROMPT";
 export const GET_USER_PHONE_NUMBER_STEP = "GET_USER_PHONE_NUMBER_STEP";

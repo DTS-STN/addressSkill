@@ -7,7 +7,7 @@ import { CommonPromptValidatorModel } from "../../../models/commonPromptValidato
 import { ContinueAndFeedbackStep, CONTINUE_AND_FEEDBACK_STEP } from "../Common/continueAndFeedbackStep";
 import { FeedBackStep, FEED_BACK_STEP } from "../Common/feedBackStep";
 import { CommonChoiceCheckStep, COMMON_CHOICE_CHECK_STEP } from "../UpdateProfile/UpdateAddress/commonChoiceCheckStep";
-import i18n from "../../locales/i18nconfig";
+import i18n from "../../locales/i18nConfig1";
 import { CallbackBotDetails } from "../../callbackDialogs/callbackBotDetails";
 import { CALLBACK_BOT_DIALOG,CallbackBotDialog } from "../../callbackDialogs/callbackBotDialog";
 const CHOISE_PROMPT = "CHOISE_PROMPT";
@@ -30,7 +30,7 @@ export class CommonCallBackStep extends ComponentDialog {
             .addDialog(new WaterfallDialog(COMMON_CALL_BACK_WATERFALL_STEP, [
                 this.continueStep.bind(this),
                 this.selectionStep.bind(this)
-               
+
             ]));
 
         this.initialDialogId = COMMON_CALL_BACK_WATERFALL_STEP;

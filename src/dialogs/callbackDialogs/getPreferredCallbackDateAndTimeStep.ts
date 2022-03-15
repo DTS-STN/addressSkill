@@ -9,7 +9,7 @@ import {
 import { LuisRecognizer } from "botbuilder-ai";
 import { CallbackBotDetails } from "./callbackBotDetails";
 // This is for the i18n stuff
-import i18n from "../locales/i18nConfig";
+import i18n from "../locales/i18nConfig1";
 const CHOICE_PROMPT = "CHOICE_PROMPT";
 const TEXT_PROMPT = "TEXT_PROMPT";
 const NUMBER_PROMPT = "NUMBER_PROMPT";

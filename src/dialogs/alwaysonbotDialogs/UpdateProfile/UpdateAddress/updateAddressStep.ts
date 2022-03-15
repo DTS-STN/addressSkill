@@ -6,7 +6,7 @@ import { FeedBackStep, FEED_BACK_STEP } from "../../Common/feedBackStep";
 import { COMMON_CHOICE_CHECK_STEP } from "../../../alwaysonbotDialogs/UpdateProfile/UpdateAddress/commonChoiceCheckStep";
 import { AddressDetails } from "./addressDetails";
 import { GetAddressesStep, GET_ADDRESS_STEP } from "./getAddressesStep";
-import i18n from "../../../locales/i18nconfig";
+import i18n from "../../../locales/i18nConfig1";
 import { COMMON_CALL_BACK_STEP,CommonCallBackStep } from "../commonCallBackStep";
 
 const CONFIRM_PROMPT = "CONFIRM_PROMPT";
@@ -19,7 +19,7 @@ let isCallBackPassed:Boolean = false;
 export class UpdateAddressStep extends ComponentDialog {
     constructor() {
         super(UPDATE_ADDRESS_STEP);
-        
+
         this.addDialog(new ConfirmPrompt(CONFIRM_PROMPT))
             .addDialog(new ChoicePrompt(CHOICE_PROMPT, this.CustomChoiceValidator))
             .addDialog(new ContinueAndFeedbackStep())
@@ -65,7 +65,7 @@ export class UpdateAddressStep extends ComponentDialog {
                 isCallBackPassed = true;
                 const addressDetails = stepContext.options as AddressDetails;
                 return await stepContext.replaceDialog(GET_ADDRESS_STEP, addressDetails);
-                
+
             }
     }
     }
@@ -76,7 +76,7 @@ export class UpdateAddressStep extends ComponentDialog {
    * If users selects 'No' then bot will navigate to the continue and feedback flow
    */
      async selectionStep(stepContext) {
-        
+
         const commonPromptValidatorModel = stepContext.result as CommonPromptValidatorModel;
         if (commonPromptValidatorModel != null && commonPromptValidatorModel.status) {
             switch (commonPromptValidatorModel.result) {
@@ -92,6 +92,6 @@ export class UpdateAddressStep extends ComponentDialog {
             return stepContext.replaceDialog(FEED_BACK_STEP, FeedBackStep);
             }
         }
-    } 
+    }
 }
 

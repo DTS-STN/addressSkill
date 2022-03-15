@@ -8,7 +8,7 @@ import { adaptiveCard } from "../../../../cards";
 import { callbackCard } from "../../../../cards/callbackCard";
 import { CommonPromptValidatorModel } from "../../../../models/commonPromptValidatorModel";
 import { LUISAlwaysOnBotSetup } from "../../alwaysOnBotRecognizer";
-import i18n from "../../../locales/i18nconfig";
+import i18n from "../../../locales/i18nConfig1";
 
 const CHOICE_PROMPT = "CHOICE_PROMPT";
 export const COMMON_CHOICE_CHECK_STEP = "COMMON_CHOICE_CHECK_STEP";
@@ -55,7 +55,7 @@ export class CommonChoiceCheckStep extends ComponentDialog {
         }
         // on every rerty attempt made by the user
         else {
- 
+
             promptMessage = i18n.__(`${commonPromptValidatorModel.promptCode}RetryPromptMessage`);
 
         }
@@ -83,6 +83,6 @@ export class CommonChoiceCheckStep extends ComponentDialog {
         }
         commonPromptValidatorModel.result = intent;
         commonPromptValidatorModel.retryCount++;
-        return await stepContext.replaceDialog(COMMON_CHOICE_CHECK_STEP, commonPromptValidatorModel);       
+        return await stepContext.replaceDialog(COMMON_CHOICE_CHECK_STEP, commonPromptValidatorModel);
    }
 }

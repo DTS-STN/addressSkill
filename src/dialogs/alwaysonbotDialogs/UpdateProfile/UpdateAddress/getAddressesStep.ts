@@ -2,7 +2,7 @@ import { LuisRecognizer } from "botbuilder-ai";
 import { Choice, ChoiceFactory, ChoicePrompt, ComponentDialog, DialogTurnResult, ListStyle, PromptValidatorContext, TextPrompt, WaterfallDialog, WaterfallStepContext } from "botbuilder-dialogs";
 import { CommonPromptValidatorModel } from "../../../../models/commonPromptValidatorModel";
 import { LUISAlwaysOnBotSetup } from "../../alwaysOnBotRecognizer";
-import i18n from "../../../locales/i18nconfig";
+import i18n from "../../../locales/i18nConfig1";
 import { ContinueAndFeedbackStep, CONTINUE_AND_FEEDBACK_STEP } from "../../Common/continueAndFeedbackStep";
 import { AddressDetails } from "./addressDetails";
 import { COMMON_CALL_BACK_STEP,CommonCallBackStep } from "../commonCallBackStep";
@@ -49,7 +49,7 @@ export class GetAddressesStep extends ComponentDialog {
      async initialStep(stepContext: WaterfallStepContext): Promise<DialogTurnResult> {
         return await stepContext.prompt(TEXT_PROMPT, i18n.__("updateAddressPostalCodePrompt"));
     }
-    
+
    /**
    * Continue step in the waterfall.Once User Key-In the postal code then bot will try to get the full address from Address API
    * Call getAddress() Method to make a API call
@@ -85,13 +85,13 @@ export class GetAddressesStep extends ComponentDialog {
                     fullAddress =  deliveryInstallationDescritpion+ " " + deliveryInstallationQualifierName+ " " + deliveryInstallationAreaName;
                     getAddresses.FullAddress = this.getSentence(fullAddress) + " "+ String(province).toUpperCase()+ " " + String(getAddresses.PostalCode).toUpperCase();
                     getAddresses.AddressType = "PO BOX";
-                    return await stepContext.prompt(TEXT_PROMPT, i18n.__("PoNumberPromptMessage"));  
+                    return await stepContext.prompt(TEXT_PROMPT, i18n.__("PoNumberPromptMessage"));
                 }
                 else{
 
                     const addressResults = data["wsaddr:SearchResults"];
                     const addressMatches = addressResults["wsaddr:AddressMatches"];
-                    var manyAddresses:string[] = new Array(20);  
+                    var manyAddresses:string[] = new Array(20);
                     if(isStreetNumberRequired){
                         getAddresses.AddressType = "MULTIPLE";
                         for (var i=0; i < addressMatches.length; i++) {
@@ -100,7 +100,7 @@ export class GetAddressesStep extends ComponentDialog {
                             if(!manyAddresses.includes(fullAddress)){
                             manyAddresses.push(fullAddress);
                             }
-                        } 
+                        }
                         let promptmsg = i18n.__("MoreStreetNumbersPrompt");
                         manyAddresses.push("I can't see my street address here");
                         return await stepContext.prompt(CHOICE_PROMPT, {
@@ -126,32 +126,32 @@ export class GetAddressesStep extends ComponentDialog {
                     }
 
                     getAddresses.FullAddress = this.getSentence(fullAddress) + " " +  String(province).toUpperCase() + " " + String(getAddresses.PostalCode).toUpperCase();
-                   
+
                     getAddresses.AddressType = "";
-                    
+
 
                     if(streetMinText === streetMaxText){
-                        return await stepContext.prompt(TEXT_PROMPT, i18n.__("UnitORApartmentPrompt"));  
+                        return await stepContext.prompt(TEXT_PROMPT, i18n.__("UnitORApartmentPrompt"));
                       }
                       else{
-                        return await stepContext.prompt(TEXT_PROMPT, i18n.__("NewStreetNumberPrompt"));    
-                      }  
+                        return await stepContext.prompt(TEXT_PROMPT, i18n.__("NewStreetNumberPrompt"));
+                      }
                   }
 
-                }    
+                }
            }catch(e){
               getAddresses.errorCount.getAddressesStep++;
               getAddresses.masterError = true;
-              return await stepContext.next(); 
+              return await stepContext.next();
           }
     }
     /**
     * Check selected address step in the waterfall.
     * if we found more than one street addresses then bot asks the street number to the user.
-    * if any errors found in previous step bot repeats this step until it reaches the max error count 
+    * if any errors found in previous step bot repeats this step until it reaches the max error count
     */
     private async checkSelectedAddressStep(stepContext: WaterfallStepContext<AddressDetails>): Promise<DialogTurnResult> {
-        
+
         const getAddresses = stepContext.options;
         if (getAddresses.AddressType === "MULTIPLE") {
             getAddresses.currentStep = "street number";
@@ -166,12 +166,12 @@ export class GetAddressesStep extends ComponentDialog {
                 return await stepContext.replaceDialog(COMMON_CALL_BACK_STEP, commonPromptValidatorModel);
             }
             else{
-            return await stepContext.prompt(TEXT_PROMPT, i18n.__("StreetNumbersPrompt")); 
+            return await stepContext.prompt(TEXT_PROMPT, i18n.__("StreetNumbersPrompt"));
             }
-             
+
         }
         else if(getAddresses.masterError === true){
-            
+
             if (getAddresses.errorCount.getAddressesStep >= Number(i18n.__("MaxRetryCount"))) {
                 isCallBackPassed = true;
                 let commonPromptValidatorModel = new CommonPromptValidatorModel(
@@ -192,7 +192,7 @@ export class GetAddressesStep extends ComponentDialog {
             }
             else{
                 getAddresses.UnitNumber = stepContext.context.activity.text;
-            }            
+            }
             let promptmsg = this.getEditedResponse(i18n.__("AddressFoundCheck"), getAddresses);
             //await stepContext.context.sendActivity(promptmsg);
             let commonPromptValidatorModel = new CommonPromptValidatorModel(
@@ -201,9 +201,9 @@ export class GetAddressesStep extends ComponentDialog {
                 "AddressFound",promptmsg
             );
             return await stepContext.beginDialog(CHOICE_CHECK_UPDATE_ADDRESS_STEP, commonPromptValidatorModel);
-            
+
         }
-    
+
     }
 
     private async streetNumberStep(stepContext) {
@@ -225,16 +225,16 @@ export class GetAddressesStep extends ComponentDialog {
         if(addressDetails.currentStep === "street number"){
             addressDetails.FullAddress = stepContext.context.activity.text +" "+ addressDetails.FullAddress;
             return await stepContext.prompt(TEXT_PROMPT, i18n.__("UnitORApartmentPrompt"));
-        } 
+        }
         else{
             return await stepContext.next();
-        }  
-      } 
+        }
+      }
     }
 
     private async streetAddressUnitStep(stepContext) {
         const addressDetails = stepContext.options as AddressDetails;
-        if(addressDetails.currentStep === "street number"){          
+        if(addressDetails.currentStep === "street number"){
             addressDetails.UnitNumber = stepContext.context.activity.text;
             let promptmsg = this.getEditedResponse(i18n.__("AddressFoundCheck"), addressDetails);
             //await stepContext.context.sendActivity(promptmsg);
@@ -244,10 +244,10 @@ export class GetAddressesStep extends ComponentDialog {
                 "AddressFound",promptmsg
             );
             return await stepContext.beginDialog(CHOICE_CHECK_UPDATE_ADDRESS_STEP, commonPromptValidatorModel);
-        } 
+        }
         else{
             return await stepContext.next();
-        }  
+        }
     }
     /**
     * This is the final step in the waterfall.
@@ -277,7 +277,7 @@ export class GetAddressesStep extends ComponentDialog {
                 else{
                     return stepContext.endDialog(this.id);
                 }
-           
+
 
        }
    }
@@ -306,7 +306,7 @@ export class GetAddressesStep extends ComponentDialog {
         {
             response=response.replace("#Unit_Number","");
         }
-        
+
         return response;
     }
     /**
@@ -340,7 +340,7 @@ export class GetAddressesStep extends ComponentDialog {
         {
             isNumber = true;
         }
-        
+
         return isNumber;
     }
 }
