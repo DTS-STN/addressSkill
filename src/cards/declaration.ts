@@ -1,4 +1,4 @@
-import i18n, { setLocale } from '../dialogs/locales/i18nConfig1';
+import i18n, { setLocale } from '../dialogs/locales/i18nConfig';
 // In practice you'll probably get this from a service
 export const declaration = (transitNumber:string, accountNumber:string, institutionNumber:string, loacle:string) => {
     setLocale(loacle);

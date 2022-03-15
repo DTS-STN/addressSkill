@@ -5,7 +5,7 @@ import { ActivityHandler, BotState, ConversationState, StatePropertyAccessor, Us
 import { Dialog, DialogSet, DialogState } from 'botbuilder-dialogs';
 
 import { ALWAYS_ON_BOT_DIALOG_STEP,AlwaysOnBotDialog } from '../dialogs/alwaysonbotDialogs/alwaysOnBotDialog';
-import i18n, { setLocale } from '../dialogs/locales/i18nConfig1';
+import i18n, { setLocale } from '../dialogs/locales/i18nConfig';
 
 export class VirtualassistantAOBot extends ActivityHandler {
     private conversationState: BotState;

@@ -8,7 +8,7 @@ import { ContinueAndFeedbackStep } from "../Common/continueAndFeedbackStep";
 import { FeedBackStep, FEED_BACK_STEP } from "../Common/feedBackStep";
 import { UpdateAddressStep, UPDATE_ADDRESS_STEP } from "./UpdateAddress/updateAddressStep";
 import { CommonChoiceCheckStep, COMMON_CHOICE_CHECK_STEP } from "../UpdateProfile/UpdateAddress/commonChoiceCheckStep";
-import i18n from "../../locales/i18nConfig1";
+import i18n from "../../locales/i18nConfig";
 import { AddressDetails } from "./UpdateAddress/addressDetails";
 
 

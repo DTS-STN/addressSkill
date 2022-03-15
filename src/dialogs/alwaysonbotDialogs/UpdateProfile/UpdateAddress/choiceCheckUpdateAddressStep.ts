@@ -8,7 +8,7 @@ import { CommonPromptValidatorModel } from "../../../../models/commonPromptValid
 
 import { LUISAlwaysOnBotSetup } from "../../alwaysOnBotRecognizer";
 
-import i18n from "../../../locales/i18nConfig1";
+import i18n from "../../../locales/i18nConfig";
 
 const CHOICE_PROMPT = "CHOICE_PROMPT";
 const TEXT_PROMPT = "TEXT_PROMPT";

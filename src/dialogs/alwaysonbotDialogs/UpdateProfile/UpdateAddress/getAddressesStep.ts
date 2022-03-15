@@ -2,7 +2,7 @@ import { LuisRecognizer } from "botbuilder-ai";
 import { Choice, ChoiceFactory, ChoicePrompt, ComponentDialog, DialogTurnResult, ListStyle, PromptValidatorContext, TextPrompt, WaterfallDialog, WaterfallStepContext } from "botbuilder-dialogs";
 import { CommonPromptValidatorModel } from "../../../../models/commonPromptValidatorModel";
 import { LUISAlwaysOnBotSetup } from "../../alwaysOnBotRecognizer";
-import i18n from "../../../locales/i18nConfig1";
+import i18n from "../../../locales/i18nConfig";
 import { ContinueAndFeedbackStep, CONTINUE_AND_FEEDBACK_STEP } from "../../Common/continueAndFeedbackStep";
 import { AddressDetails } from "./addressDetails";
 import { COMMON_CALL_BACK_STEP,CommonCallBackStep } from "../commonCallBackStep";

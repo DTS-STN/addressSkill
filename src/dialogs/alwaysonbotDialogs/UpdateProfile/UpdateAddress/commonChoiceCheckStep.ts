@@ -8,7 +8,7 @@ import { adaptiveCard } from "../../../../cards";
 import { callbackCard } from "../../../../cards/callbackCard";
 import { CommonPromptValidatorModel } from "../../../../models/commonPromptValidatorModel";
 import { LUISAlwaysOnBotSetup } from "../../alwaysOnBotRecognizer";
-import i18n from "../../../locales/i18nConfig1";
+import i18n from "../../../locales/i18nConfig";
 
 const CHOICE_PROMPT = "CHOICE_PROMPT";
 export const COMMON_CHOICE_CHECK_STEP = "COMMON_CHOICE_CHECK_STEP";

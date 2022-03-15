@@ -5,7 +5,7 @@ import {
     WaterfallStepContext
 } from "botbuilder-dialogs";
 
-import i18n from "../../locales/i18nConfig1";
+import i18n from "../../locales/i18nConfig";
 
 const TEXT_PROMPT = "TEXT_PROMPT";
 const CHOICE_PROMPT = "CHOICE_PROMPT";

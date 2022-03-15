@@ -6,7 +6,7 @@ import { FeedBackStep, FEED_BACK_STEP } from "../../Common/feedBackStep";
 import { COMMON_CHOICE_CHECK_STEP } from "../../../alwaysonbotDialogs/UpdateProfile/UpdateAddress/commonChoiceCheckStep";
 import { AddressDetails } from "./addressDetails";
 import { GetAddressesStep, GET_ADDRESS_STEP } from "./getAddressesStep";
-import i18n from "../../../locales/i18nConfig1";
+import i18n from "../../../locales/i18nConfig";
 import { COMMON_CALL_BACK_STEP,CommonCallBackStep } from "../commonCallBackStep";
 
 const CONFIRM_PROMPT = "CONFIRM_PROMPT";

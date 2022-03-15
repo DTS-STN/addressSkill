@@ -11,7 +11,7 @@ import { CallbackBotDetails } from "./callbackBotDetails";
 import { CallbackRecognizer } from "./callbackRecognizer";
 import { CONFIRM_EMAIL_STEP } from "./confirmEmailStep";
 import { GET_PREFERRED_METHOD_OF_CONTACT_STEP } from "./getPreferredMethodOfContactStep";
-import i18n from "../locales/i18nConfig1";
+import i18n from "../locales/i18nConfig";
 
 const TEXT_PROMPT = "TEXT_PROMPT";
 export const GET_USER_EMAIL_STEP = "GET_USER_EMAIL_STEP";

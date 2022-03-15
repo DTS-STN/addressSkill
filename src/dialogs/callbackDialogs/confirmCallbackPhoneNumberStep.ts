@@ -8,7 +8,7 @@ import {
 
 import { LuisRecognizer } from "botbuilder-ai";
 
-import i18n from "../locales/i18nConfig1";
+import i18n from "../locales/i18nConfig";
 import { GET_USER_PHONE_NUMBER_STEP } from "./getUserPhoneNumberStep";
 import { CallbackBotDetails } from "./callbackBotDetails";
 import { CallbackRecognizer } from "./callbackRecognizer";

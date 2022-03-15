@@ -7,7 +7,7 @@ import {
 import { CommonPromptValidatorModel } from "../../../models/commonPromptValidatorModel";
 import { LUISAlwaysOnBotSetup } from "../alwaysOnBotRecognizer";
 
-import i18n from "../../locales/i18nConfig1";
+import i18n from "../../locales/i18nConfig";
 import { COMMON_CHOICE_CHECK_STEP } from "../UpdateProfile/UpdateAddress/commonChoiceCheckStep";
 import { UpdateProfileStep, UPDATE_PROFILE_STEP } from "../UpdateProfile/updateProfileStep";
 import { FeedBackStep, FEED_BACK_STEP } from "./feedBackStep";
