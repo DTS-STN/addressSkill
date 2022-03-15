@@ -1,0 +1,1 @@
+Please refer to the [Enable Continuous Integration](https://microsoft.github.io/botframework-solutions/solution-accelerators/tutorials/enable-continuous-integration/typescript/1-intro/) for customization instructions.

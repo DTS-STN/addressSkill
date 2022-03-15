@@ -1,0 +1,296 @@
+{
+	"main-dialogs-msg": "-------------------",
+	"OKMsg": "FR - OKMsg",
+	"mainDialogFeedbackMsg": "Avant de partir, puis-je vous demander d'évaluer le service que vous avez reçu aujourd'hui?",
+	"mainDialogGreatDayMsg": "Merci pour votre temps!",
+	"confirmLookIntoStepStandardMsg": "J’ai examiné votre demande et je vois que quelque chose est bloqué. Voulez-vous que j’en détermine la cause?",
+	"confirmLookIntoStepRetryMsg": "Hum, je ne comprends pas. Avez-vous un compte bancaire dans une institution financière canadienne?",
+	"confirmLookIntoStepErrorMsg": "Désolé Mary, Je ne suis pas capable de vous aider avec cela. Si vous voulez planifié un appel avec un de nos agents, vous pouvez accéder a notre service de rappel ici: [insérer le lien lici]",
+	"confirmLookIntoStepStandardPromptOptions": [
+		"Oui",
+		"Non merci"
+	],
+	"confirmLookIntoStepCloseMsg": "D'accord, pas de problème. Dites-le-moi si vous changez d'avis!",
+	"unblcok-dialogs-msg": "--------------------------------",
+	"directDepositMasterErrorMsg": "Je suis désolé, je ne crois pas pouvoir vous aider aujourd'hui. Par contre, je peux demander à un représentant de Service Canada de vous téléphoner pour vous aider à nous transmettre vos renseignements bancaires. \n\n Voulez-vous que je planifie un appel?",
+	"confirmHomeAddressStepRetryMsg": "FR - Oops, I'm not sure what you meant. Can you confirm your home address?",
+	"confirmHomeAddressConfirm1Msg": "FR - Ok, so your address is: ",
+	"confirmHomeAddressConfirm2Msg": ". Is everything spelled correctly? Can you confirm this is your home address?",
+	"confirmHomeAddressStepStandardPromptOptions": [
+		"Yes, this is correct",
+		"No, this is not correct"
+	],
+	"confirmHomeAddressSavedFirstMsg": "FR - Ok, I've saved your home address and your pension file is up to date. You're all set for now!",
+	"confirmHomeAddressSavedSecondMsg": "FR - Once your file is processed you will recieve more information my mail.",
+	"confirmHomeAddressSavedThirdMsg": "FR - Just a reminder: you'll recieve your first Old Age Security payment one month after your 65th birthday.",
+	"callbackBotDialogWelcomeMsg": "Très bien! Je vais demander à un représentant de Service Canada de vous téléphoner dans les prochaines 48 heures, entre 9h et 17h (HNE).",
+	"unblock_lookup_welcome_msg": "Bonjour, Hafsa! Je suis votre assistant virtuel.",
+	"unblock_lookup_update_msg": "J'ai presque toute l'information pour vous inscrire à la pension de la Sécurité de la vieillesse.",
+	"unblock_lookup_update_reason": "Par contre, le compte bancaire que j'ai pour vous semble à l'extérieur du Canada.",
+	"unblock_lookup_update_prompt_msg": "Je dois mettre à jour vos renseignements pour que vous puissiez recevoir votre premier paiement à temps. Avez-vous un compte bancaire dans une institution financière canadienne?",
+	"unblock_lookup_prompt_confirm_msg": "D'accord, si nous ne mettons pas à jour vos renseignements bancaires, je ne pourrai pas compléter votre inscription automatique. Vous devrez vous-même soumettre une demande en utilisant le formulaire. Préférez-vous soumettre votre demande en utilisant le formulaire?  ",
+	"unblock_lookup_prompt_confirm_opts": [
+		"Oui, c'est ce que je préfère",
+		"Non, j'aimerais mettre à jour mes renseignements bancaires"
+	],
+	"unblock_lookup_prompt_opts": [
+		"Oui",
+		"Non"
+	],
+	"unblock_lookup_decline_final_link_text": "Présenter une demande de pension de la Sécurité de la vieillesse",
+	"unblock_lookup_decline_final_text": "Si vous avez un compte bancaire d'une institution financière qui n'est pas canadienne, vous devrez vous-même soumettre une demande en utilisant le formulaire. Vous pouvez y accéder à partir du lien suivant :",
+	"unblock_lookup_add_prompt_msg": "J'ai juste besoin d'ajouter les renseignements bancaires manquants. Ça accélérera le processus et vous permettra de recevoir votre premier paiement à temps. Est-ce que ça vous convient?",
+	"unblock_lookup_decline_callback_msg": "D'accord, pas de problème. Vous pouvez accéder au formulaire à partir du lien suivant :",
+	"unblock_lookup_decline_callback_link": "https://canada.qc.ca",
+	"unblock_lookup_decline_callback_link_msg": "Présenter une demande de pension de la Sécurité de la vieillesse.",
+	"unblock_direct_deposit_msg": "D'accord, c'est parfait! J'aurais besoin des numéros suivants afin de m'assurer que vos renseignements bancaires sont à jour :",
+	"unblock_direct_deposit_institution_name": "le numéro de votre institution financière (3 chiffres)",
+	"unblock_direct_deposit_transit_name": "votre numéro de transit (5 chiffres)",
+	"unblock_direct_deposit_account_name": " Le numéro de votre compte bancaire (7 chiffres)",
+	"unblock_direct_deposit_how_to_cheques": "Tous les numéros se trouvent au bas de vos chèques personnels.",
+	"unblock_direct_deposit_how_to_bank": "Vous pouvez également trouver ces numéros en visitant le site Web de votre institution financière ou en vous connectant à votre compte bancaire en ligne.",
+	"unblock_direct_deposit_cheque_altText": "Image d'un chèque montrant les 3 numéros encerclés.",
+	"unblock_direct_deposit_institute": "Quel est le numéro de votre institution financière (3 chiffres)?",
+	"unblock_direct_deposit_institute_retry": "Hum, ce numéro d'institution financière ne semble pas valide. Essayez à nouveau.",
+	"unblock_direct_deposit_transit": "Quel est votre numéro de transit (5 chiffres)?",
+	"unblock_direct_deposit_transit_retry": "Hmm, ce numéro de transit ne semble pas valide. Essayez à nouveau.",
+	"unblock_direct_deposit_account": "Quel est le numéro de votre compte bancaire (7 chiffres)?",
+	"unblock_direct_deposit_account_retry": "Hum, ce numéro de compte bancaire ne semble pas valide. Essayez à nouveau.",
+	"unblock_direct_deposit_valid_msg": "Vos renseignements bancaires ont été ajoutés à votre dossier. Vos informations sont à jour.",
+	"unblock_direct_deposit_valid_tip": "Nous allons vous envoyer une lettre contenant les détails sur votre pension environ un mois avant votre 65e anniversaire. Vous recevrez cette lettre par la poste.",
+	"unblock_direct_deposit_valid_reminder": "Petit rappel : vous recevrez votre premier paiement de la pension de la Sécurité de la vieillesse un mois après votre 65e anniversaire.",
+	"unblock_direct_deposit_complete": "Pour le moment, vous avez tout ce qu'il vous faut!",
+	"unblock_direct_deposit_main_error": "Hum, il semble que les numéros que vous avez entrés ne soient pas valides. \n\n Veuillez vérifier vos renseignements bancaires avant de continuer. Je peux aussi demander à un représentant de Service Canada de vous téléphoner pour vous aider à soumettre votre demande de pension. \n\n Est-ce que ça vous convient?",
+	"unblock_direct_deposit_cheque_path": "unblock_direct_deposit_cheque_path",
+	"unblockBotDialogMasterErrorMsg": "Hum, j'ai de la difficulté à vous comprendre. Excusez-moi! Veuillez consulter notre centre d'aide ou nous appeler au [XXX-XXX-XXXX].",
+	"callback-dialogs-msg": "-------------------------------",
+	"callbackBotDialogMasterErrorMsg": "Hum, j'ai de la difficulté à vous comprendre. Excusez-moi! Veuillez consulter notre centre d'aide ou nous appeler au [XXX-XXX-XXXX].",
+	"confirmSendEmailStepStandardMsg": "Alors, je vois que vous avez rempli votre demande le 12 août et que la demande est impeccable. Cependant, nous n'avons toujours pas reçu le relevé d'emploi de votre dernier employeur, Initech.",
+	"confirmSendEmailStepRetryMsg": "Hum, je ne comprends pas. Voulez-vous que j'envoie un courriel de suivi à Initech?",
+	"confirmSendEmailStepQueryMsg": "Si vous voulez, je peux lui envoyer un courriel de suivi de la part du gouvernement du Canada. En général, ça fait l’affaire",
+	"confirmSendEmailStepErrorMsg": "Désolé Mary, Je ne suis pas capable de vous aider avec cela. Si vous voulez planifié un appel avec un de nos agents, vous pouvez accéder a notre service de rappel ici: [insérer le lien lici]",
+	"confirmSendEmailStepCloseMsg": "D'accord, pas de problème. Dites-le-moi si vous changez d'avis!",
+	"getAndSendEmailStepStandardMsg": "D'accord, à quelle adresse de courrier électronique dois-je l'envoyer?",
+	"getAndSendEmailStepRetryMsg": "Désolé, voulez-vous que j'envoie un courriel à votre ancien employeur?",
+	"getAndSendEmailStepConfirmMsg": "D'accord, c'est envoyé!",
+	"confirmNotifyROEReceivedStepStandardMsg": "Voulez-vous que je vous informe lorsque nous aurons reçu le relevé d'emploi?",
+	"confirmNotifyROEReceivedStepRetryMsg": "Désolé, Voulez-vous que je vous informe lorsque nous aurons reçu le relevé d'emploi?",
+	"confirmNotifyROEReceivedStepErrorMsg": "Désolé Mary, Je ne suis pas capable de vous aider avec cela. Si vous voulez planifié un appel avec un de nos agents, vous pouvez accéder a notre service de rappel ici: [insérer le lien lici]",
+	"confirmNotifyROEReceivedStepStandardPromptOptions": [
+		"Oui, informez-moi",
+		"Non, ne m'informez pas"
+	],
+	"confirmNotifyROEReceivedStepCloseMsg": "FROk, no problem!",
+	"getPreferredMethodOfContactStepStandardMsg": "Quel est le meilleur moyen de vous joindre? Je peux envoyer un courriel ou un message texte (ou les deux).",
+	"getPreferredMethodOfContactStepRetryMsg": "Hum, je ne comprends pas. Préférez-vous que je vous envoie votre code de confirmation par courriel, par message texte, ou les deux?",
+	"getPreferredMethodOfContactStepSendEmailMsg": "D'accord, je vous enverrai un courriel à mary@adressefaux.com dès que nous aurons reçu votre relevé d'emploi.",
+	"getPreferredMethodOfContactStepSendTextMsg": "D'accord, je vous enverrai un message texte à 123-456-789 dès que nous aurons reçu votre relevé d'emploi.",
+	"getPreferredMethodOfContactStepSendBothMsg": "D'accord, je vous enverrai un courriel à mary@adressefaux.com et un message texte au 123-456-7890 dès que nous aurons reçu votre relevé d'emploi.",
+	"getPreferredMethodOfContactStepStandardPromptOptions": [
+		"courriel",
+		"message texte",
+		"les deux",
+		"pas du tout"
+	],
+	"confirmConfirmationStepStandardPromptOptions": [
+		"courriel",
+		"message texte",
+		"les deux"
+	],
+	"callbackBotDialogStepStandardMsg": "Je peux demander à un représentant de Service Canada de vous téléphoner pour trouver une solution au relevé d'emploi manquant. Est-ce que ça vous convient?",
+	"confirmCallbackStandardPromptOptions": [
+		"Oui s'il vous plaît!",
+		"Non merci"
+	],
+	"confirmCallbackStepRetryMsg": "Hum, je ne comprends pas. Voulez-vous qu'un représentant de Service Canada vous téléphone au sujet de votre demande?",
+	"confirmCallbackStepErrorMsg": "Hum, j'ai de la difficulté à vous comprendre. Excusez-moi! Veuillez consulter notre centre d'aide ou nous appeler au [XXX-XXX-XXXX].",
+	"confirmCallbackStepStandardPromptOptions": [
+		"Oui s'il vous plaît!",
+		"Non merci"
+	],
+	"confirmCallbackStepCloseMsg": "D'accord, pas de problème. Je suis là si vous avez besoin de moi!",
+	"confirmAuthWordStepStandardMsg": "Voici votre code de confirmation : [XXX-XXXXXXXXXXXXXXX].",
+	"confirmAuthWordMsg": "You will be contacted by an officer from Service Canada within the next 48 hours between 9-5pm EST.",
+	"confirmAuthStepMsg": "Je vais également vous donner un code de confirmation. Lorsque le représentant vous appellera, il vous transmettra ce code pour prouver qu'il ne s'agit pas d'un appel frauduleux.",
+	"confirmAuthWordStepRetryMsg": "sorry, I dont understand what do you mean?",
+	"getUserPhoneNumberStepStandardMsg": "Ok, what phone number that the agent can reach you?",
+	"getUserPhoneNumberStepRetryMsg": "Sorry, do you want me to record your phone number?",
+	"getCallbackScheduleStandardMsg": "Très bien! Je vais demander à un représentant de Service Canada de vous téléphoner dans les prochaines 48 heures, entre 9h et 17h (HNE).",
+	"confirmEmailStepStandMsg": "L'adresse de courrier électronique que j'ai est [test@test.com]. Est-ce que cette adresse est correcte?",
+	"confirmEmailStepRetryMsg": "Hum, je ne comprends pas. Est-ce la bonne adresse de courrier électonique?",
+	"confirmEmailStepStandardPromptOptions": [
+		"Oui correct!",
+		"Non ce n'est pas"
+	],
+	"confirmPhoneStepStandMsg": "Le numéro de téléphone que j'ai est le [XXX-XXX-XXXX]. Est-ce que ce numéro peut recevoir des messages texte?",
+	"confirmPhoneStepRetryMsg": "Hum, je ne comprends pas. Est-ce le bon numéro de téléphone?",
+	"confirmPhoneStepStandardPromptOptions": [
+		"Oui correct",
+		"Non ce n'est pas"
+	],
+	"callbackGoodByeGreetingStandardPromptOptions": [
+		"Oui ",
+		"Non"
+	],
+	"callbackCloseMsg": "D'accord, pas de problème. Je suis là si vous avez besoin de moi!",
+	"masterErrorMsg": "Hum, j'ai de la difficulté à vous comprendre. Excusez-moi! Veuillez consulter notre centre d'aide ou nous appeler au [XXX-XXX-XXXX].",
+	"unBlockBotDialogWelcomeMsg": "Bonjour, Marie! Je suis votre assistant virtuel.",
+	"confirmSendEmailStepStandardPromptOptions": [
+		"Envoyer email",
+		"N'envoyez pas"
+	],
+	"botGreatMsg": "Je vois. Il semble que vous ayez besoin de plus d'aide que je ne peux vous en fournir pour le moment.",
+	"confirmEmailStepErrorPromptOptions": [
+		"Oui s'il vous plaît!",
+		"Non merci"
+	],
+	"confirmCallbackPhoneNumberStepStandardMsg": "D'accord! Est-ce que le [XXX-XXX-XXXX] est toujours le meilleur numéro de téléphone pour vous joindre?",
+	"confirmCallbackPhoneNumberStepStandardPromptOptions": [
+		"Oui correct",
+		"Non ce n'est pas"
+	],
+	"confirmCallbackPhoneNumberStepRetryPromptOptions": [
+		"Oui s'il vous plaît!",
+		"Non merci"
+	],
+	"confirmCallbackPhoneNumberStepRetryMsg": "Hum, je ne comprends pas. Est-ce que le [XXX-XXX-XXXX] est toujours le meilleur numéro de téléphone pour vous joindre?",
+	"callbackConfirmationQueryMsg": "Aimeriez-vous recevoir ce code de confirmation par courriel, par message texte, ou les deux?",
+	"getUserEmailStepStandardMsg": "Aucun problème, je vais mettre votre profil à jour. Quelle est votre nouvelle adresse de courrier électronique?",
+	"getUserEmailStepRetryMsg": "Hum, je ne comprends pas. Est-ce la bonne adresse de courrier électonique?",
+	"getUserEmailStepConfirmMsg": "D'accord, je vous envoie votre code de confirmation par courriel à [ADRESSE DE COURRIER ELECTRONIQUE].",
+	"getUserBothContactsConfirmMsg": "D'accord, je vous envoie votre code de confirmation par courriel à [ADRESSE DE COURRIER ELECTRONIQUE] et par message texte à [NUMERO DE TELEPHONE].",
+	"getUserPhoneStepStandardMsg": "Pouvez-vous me donner un numéro de téléphone cellulaire où je peux vous envoyer le message texte?",
+	"getCallbackPhoneNumberStandardMsg": "Aucun problème, je vais mettre votre profil à jour. Quel est votre nouveau numéro de téléphone?",
+	"getUserPhoneStepRetryMsg": "Hum, je ne comprends pas. Est-ce le bon numéro de téléphone?",
+	"getUserPhoneConfirmMsg": "D'accord, je vous envoie votre code de confirmation par message texte au [NUMÉRO DE TÉLÉPHONE].",
+	"getUserEmailFormatErrorMsg": "Oups, il semble que l'adresse de courrier électronique que vous avez entrée n'utilise pas le bon format (voici un exemple : nom@courriel.com). Essayez à nouveau.",
+	"getUserPhoneNumberFormatErrorMsg": "Oups, il semble que le numéro de téléphone que vous avez entré n'utilise pas le bon format (voici un exemple : 123-456-7890). Essayez à nouveau.",
+	"emailFormatMaxErrorMsg": "Il semble que les adresses de courrier électronique que vous avez entrées n'utilisent pas le bon format. Veuillez vérifier votre adresse de courrier électronique avant de continuer. Voulez-vous réessayer?",
+	"phoneNumberFormatMaxErrorMsg": "Il semble que les numéros de téléphone que vous avez entrés n'utilisent pas le bon format. Veuillez vérifier votre numéro de téléphone avant de continuer. Voulez-vous réessayer?",
+	"rateRetryMsg": "Oops - I'm not sure what you meant. Can you rate the service you received today?",
+	"standardQueryMsg": [
+		"Oui s'il vous plaît",
+		"Non merci"
+	],
+	"NoNotificationMsg": "D'accord, c'est bon. Vous avez tout alors!",
+	"always-on-bot-block-start": "-------ALWAYS-ON-BOT-START------",
+	"welcomeVirtualAssistantMessage": "Bonjour Hafsa!, Je suis votre assistant virtuel!",
+	"welcomeProfileStatement": "Je peux voir que votre profil est à jour selon votre dernière visite le vendredi 12 novembre 2021.",
+	"welcomeChoicePromptMain": "Choisissez l’un des boutons ou tapez quelque chose ci-dessous.",
+	"AlwaysOnBotRetryPromptMessage": "Hum, je ne comprends pas. Comment puis-je vous aider?",
+	"AlwaysOnBotPromptMessage": "Comment puis-je vous aider?",
+	"AlwaysOnBotPromptOptions": [
+		"Je veux mettre à jour mes renseignements personnels",
+		"J'ai une question concernant ma pension de la Sécurité de la vieillesse"
+	],
+	"oasBenefitChoicePrompt": "Veuillez choisir l’une des options ci-dessous.",
+	"oasBenefitChoices": [
+		"Date du prochain paiement",
+		"Montant du prochain paiement",
+		"Modification du montant du paiement"
+	],
+	"oasBenefitCheckProfile": "Votre inscription automatique à la pension de la Sécurité de la vieillesse est toujours en cours de traitement.",
+	"oasBenefitPaymentDue": "Nous sommes en train de calculer le montant que vous recevrez à chaque mois. Selon l'information disponible à ce jour, vous recevrez probablement 642.25 $ chaque mois.",
+	"oasBenefitShowDeposit": "Un peu avant votre anniversaire, vous recevrez une lettre confirmant votre éligibilité et le montant que vous recevrez chaque mois.",
+	"continueAndFeedPromptMessage": "Comment puis-je vous aider aujourd'hui?",
+	"continueAndFeedRetryPromptMessage": "OK ça sonne bien, vous êtes prêt alors!",
+	"continueAndFeedPromptOptions": [
+		"Oui",
+		"Non"
+	],
+	"continueAndFeedRating": "Avant de partir, puis-je vous demander d'évaluer le service que vous avez reçu aujourd'hui?",
+	"continueAndFeedRatingChoices": [
+		"1=😡",
+		"2=😕",
+		"3=😐",
+		"4=🙂",
+		"5=😀"
+	],
+	"continueAndFeedExcellent": "Merci pour votre temps!",
+	"UpdateMyProfilePromptMessage": "Ok, voici quelques autres options ci-dessous.",
+	"UpdateMyProfileRetryPromptMessage": "Hum, je ne comprends pas. Que voulez-vous mettre à jour?",
+	"UpdateMyProfilePromptOptions": [
+		"Mettre à jour mon adresse"
+	],
+	"updateAddressPostalCodePrompt": "Quel est votre nouveau code postal?",
+	"UpdateAddressPromptOptions": [
+		"Oui",
+		"Non"
+	],
+	"UpdateAddressPromptMessage": "D'accord, je peux vous aider. L'adresse que j'ai pour vous est 123 Fake Street, Markham, ON, C1C 1C1. Avez-vous une nouvelle adresse?",
+	"UpdateAddressRetryPromptMessage": "Hum, je ne comprends pas. Comment puis-je vous aider?",
+	"UpdateAddress": "Parfait! J'ai effectué votre changement d'adresse : [X]",
+	"updateAddressUnitNumberPrompt": "Très bien. Quel est votre numéro d'unité ou d'appartement?",
+	"RetryAddressCheckResponse": "D'accord, essayons de voir pourquoi je ne trouve pas votre nouvelle adresse. Est-ce que votre nouveau code postal est le @Postal_Code?",
+	"ConcludeAddressNotFound": "Hum, je ne trouve pas votre adresse dans le système. Désirez-vous que je demande à un représentant de Service Canada de vous téléphoner pour compléter votre changement d'adresse?",
+	"ServiceRetryPostalCode": "D'accord, essayons à nouveau. Donnez-moi votre code postal.",
+	"DidntUnderstandMessageText": "Sory i didn't understand that, try asking me different question",
+	"AddressFoundCheck": "D'accord! Votre adresse complète est #Unit_Number, @Postal_Code. Est-ce exact?",
+	"ConfirmUnitNumberResultInputPrompt": "D'accord, réessayez, le code postal que vous avez entré était @Postal_Code et le numéro de rue que vous avez entré est 517, cela vous semble-t-il correct?",
+	"unitAdreessNotListedText": "Ok, voyons ce que nous avons. Le code postal que vous m'avez donné est @Postal_Code et le numéro de rue que vous m'avez donné est le 517. S'agit-il des informations correctes?",
+	"unitAppartmentNumberChoice": "Je n'ai pas de numéro d'unité ou d'appartement",
+	"APILanguage": "fr-CA",
+	"subscriptionKey": "5fbe91e084be42af9793b7a24cd66baf",
+	"AddressQuestion": "D'accord, je peux vous aider. L'adresse que j'ai pour vous est 123 Fake Street, Markham, ON, C1C 1C1. Avez-vous une nouvelle adresse?",
+	"PoNumberPromptMessage": "Quel est votre nouveau numéro de case postale?",
+	"MoreStreetNumbersPrompt": "J'ai trouvé plus d'une rue pour ce code postal, veuillez sélectionner votre rue parmi celles qui sont proposées ci-dessous.",
+	"UnitORApartmentPrompt": "Quel est votre nouveau numéro d'appartement ou d'unité?",
+	"NewStreetNumberPrompt": "Quel est votre nouveau numéro de rue? Par exemple, « 36 » si votre adresse est le 36, rue des Érables",
+	"StreetNumbersPrompt": "Quel est votre nouveau numéro de rue?",
+	"IncorrectPostalCodePrompt": "Oups, il semble que le code postal que vous avez entré n'utilise pas le bon format (voici un exemple : T2T 4M4). Essayez à nouveau.",
+	"NoStatementPhoneNumber": "D'accord, pas de problème!",
+	"AskPhoneNUmber": "Quel est votre nouveau numéro de téléphone?",
+	"PhoneNumberConfirmStep": "Parfait! J'ai mis à jour votre numéro de téléphone @phoneNumber",
+	"SetStep": "Pour le moment, vous avez tout ce qu'il vous faut!",
+	"MasterRetryExceededMessage": "Hum, j'ai de la difficulté à vous comprendre. Excusez-moi! Veuillez consulter notre centre d'aide ou nous appeler au [XXX-XXX-XXXX].",
+	"MasterErrorMessageLink": "Accéder au centre d'aide",
+	"UpdateMyPhoneNumberPromptMessage": "D'accord, je peux vous aider. Le numéro de téléphone que j'ai est le [XXX-XXX-XXXX]. Voulez-vous mettre à jour ce numéro?",
+	"UpdateMyPhoneNumberPromptOptions": [
+		"Oui",
+		"Non"
+	],
+	"UpdateMyPhoneNumberRetryPromptMessage": "Hum, je ne comprends pas. Voulez-vous mettre à jour ce numéro?",
+	"ConfirmPhoneNumberRetryPromptMessage": "Oups, il semble que le numéro de téléphone que vous avez entré n'utilise pas le bon format (voici un exemple : 123-456-7890). Essayez à nouveau.",
+	"ConfirmPhoneNumberRetryExceededMessage": "Je suis désolé, je ne crois pas pouvoir vous aider aujourd'hui. Par contre, je peux demander à un représentant de Service Canada de vous téléphoner pour vous aider à mettre à jour votre numéro de téléphone.\nVoulez-vous que je planifie un appel?",
+	"ConfirmPhoneNumberRetryExceededChoices": [
+		"Oui, appelez-moi",
+		"Non, pas pour l'instant"
+	],
+	"OASBenefitPromptOptions": [
+		"Quel est l'état de ma demande?"
+	],
+	"OASBenefitPromptMessage": "Voici les questions auxquelles je peux répondre :",
+	"OASBenefitRetryPromptMessage": "Hum, je ne comprends pas. Quelle question puis-je vous aider à répondre?",
+	"ServiceRepresentativePrompt": "Je suis désolé, je ne crois pas pouvoir vous aider aujourd'hui. Par contre, je peux demander à un représentant de Service Canada de vous téléphoner pour vous aider à mettre à jour votre adresse.",
+	"SetupCallPrompt": "Voulez-vous que je planifie un appel?",
+	"AddressFoundPromptOptions": [
+		"Oui",
+		"Non"
+	],
+	"AddressFoundPromptMessage": "",
+	"AddressFoundRetryPromptMessage": "Hmm, je ne suis pas sûr de ce que tu voulais dire. est-ce la bonne adresse ?",
+	"ServiceRepresentativePromptOptions": [
+		"Oui, appelez-moi",
+		"Non, pas pour l'instant"
+	],
+	"ServiceRepresentativePromptMessage": "Je suis désolé, je ne crois pas pouvoir vous aider aujourd'hui. Par contre, je peux demander à un représentant de Service Canada de vous téléphoner pour vous aider à mettre à jour votre adresse.",
+	"ServiceRepresentativeRetryPromptMessage": "Hmm, je ne suis pas sûr de ce que tu voulais dire. Comment puis-je aider?",
+	"MaxRetryCount": "4",
+	"ConfirmEmailCallBackRetryPromptMessage": "Souhaitez-vous que j'établisse un appel?",
+	"ConfirmEmailCallBackPromptMessage": "Je suis désolé, je ne crois pas pouvoir vous aider aujourd'hui. Par contre, je peux demander à un représentant de Service Canada de vous téléphoner pour vous aider à mettre à jour votre adresse de courrier électronique.\nVoulez-vous que je planifie un appel?",
+	"EmailAddressConfirmStep": "Parfait! J'ai mis à jour votre adresse de courrier électronique @email",
+	"UpdateMyEmailPromptMessage": "D'accord, je peux vous aider. L'adresse de courrier électronique que j'ai est [test@test.com]. Voulez-vous mettre à jour cette adresse?",
+	"UpdateMyEmailPromptOptions": [
+		"Oui",
+		"Non"
+	],
+	"AskEmailAddress": "Quelle est votre nouvelle adresse de courrier électronique?",
+	"ConfirmEmailRetryPromptMessage": "Oups, il semble que l'adresse de courrier électronique que vous avez entrée n'utilise pas le bon format (voici un exemple : nom@courriel.com). Essayez à nouveau.",
+	"UpdateMyEmailRetryPromptMessage": "Hum, je ne comprends pas. Voulez-vous mettre à jour cette adresse de courrier électronique?",
+	"ConfirmEmailCallBackPromptOptions": [
+		"Oui, appelez-moi",
+		"Non, pas pour l'instant"
+	],
+	"always-on-bot-block-end": "-------ALWAYS-ON-BOT-END------",
+	"NoStatementEmail": "Pour le moment, vous avez tout ce qu'il vous faut!"
+}
