@@ -18,8 +18,8 @@
         "name": "production",
         "protocol": "BotFrameworkV3",
         "description": "Production endpoint for the skill",
-        "endpointUrl": "http://localhost:39785/api/messages",
-        "msAppId": "646686e5-3ff4-4a7b-a574-11638fbe9b07"
+        "endpointUrl": "https://va-address-skill-develop.bdm-dev.dts-stn.com/api/messages",
+        "msAppId": "ab4a57be-1514-48e1-b281-1a5282527c4c"
       }
     ],
     "dispatchModels": {
