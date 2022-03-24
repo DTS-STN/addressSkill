@@ -8,29 +8,39 @@ import {
     WaterfallDialog,
     WaterfallStepContext
 } from 'botbuilder-dialogs';
-import { Choice } from '../../../node_modules/botbuilder-dialogs/src/choices/findChoices';
-import { FEED_BACK_STEP } from './Common/feedBackStep';
-import { UpdateProfileStep, UPDATE_PROFILE_STEP } from './UpdateProfile/updateProfileStep';
+import { Choice } from 'botbuilder-dialogs/src/choices/findChoices';
+import { CommonPromptValidatorModel } from '../../models/commonPromptValidatorModel';
+import { CommonChoiceCheckStep } from '../alwaysonbotDialogs/Common/commonChoiceCheckStep';
+import { FeedBackStep, FEED_BACK_STEP } from '../alwaysonbotDialogs/Common/feedBackStep';
+import { GET_ADDRESS_STEP } from './UpdateProfile/UpdateAddress/getAddressesStep';
+import { AddressDetails } from './UpdateProfile/UpdateAddress/addressDetails';
+import { UpdateAddressStep, UPDATE_ADDRESS_STEP } from './UpdateProfile/UpdateAddress/updateAddressStep';
+import { UpdateProfileStep } from './UpdateProfile/updateProfileStep';
 
 
-export const ALWAYS_ON_BOT_DIALOG_STEP = 'ALWAYS_ON_BOT_DIALOG_STEP';
-
+const TEXT_PROMPT = 'TEXT_PROMPT';
+const CHOICE_PROMPT = 'CHOICE_PROMPT';
+const ALWAYS_ON_BOT_WATERFALL_DIALOG = 'ALWAYS_ON_BOT_WATERFALL_DIALOG';
+export const ALWAYS_ON_BOT_DIALOG = 'ALWAYS_ON_BOT_DIALOG';
 export class AlwaysOnBotDialog extends ComponentDialog {
 
     constructor() {
-        super(ALWAYS_ON_BOT_DIALOG_STEP);
+        super(ALWAYS_ON_BOT_DIALOG);
 
         if (!UpdateProfileStep) throw new Error('[MainDialog]: Missing parameter "updateProfileDialog" is required');
 
         // Define the main dialog and its related components.
-        // This is a sample "book a flight" dialog.
-        this.addDialog(new TextPrompt('TEXT_PROMPT'))
-            .addDialog(new UpdateProfileStep())
-            .addDialog(new WaterfallDialog(ALWAYS_ON_BOT_DIALOG_STEP, [
-                this.introStep.bind(this)
+        this.addDialog(new TextPrompt(TEXT_PROMPT));
+        this.addDialog(new UpdateProfileStep());
+        this.addDialog(new UpdateAddressStep())
+        this.addDialog(new FeedBackStep());
+        this.addDialog(new CommonChoiceCheckStep());
+        this.addDialog(new ChoicePrompt(CHOICE_PROMPT,this.CustomChoiceValidator));
+        this.addDialog(new WaterfallDialog(ALWAYS_ON_BOT_WATERFALL_DIALOG, [
+                this.introStep.bind(this),
             ]));
 
-        this.initialDialogId = ALWAYS_ON_BOT_DIALOG_STEP;
+        this.initialDialogId = ALWAYS_ON_BOT_WATERFALL_DIALOG;
     }
 
     /**
@@ -38,6 +48,16 @@ export class AlwaysOnBotDialog extends ComponentDialog {
      * If no dialog is active, it will start the default dialog.
      * @param {TurnContext} context
      */
+    // public async run(context: TurnContext, accessor: StatePropertyAccessor<DialogState>) {
+    //     const dialogSet = new DialogSet(accessor);
+    //     dialogSet.add(this);
+    //     const dialogContext = await dialogSet.createContext(context);
+    //     const results = await dialogContext.continueDialog();
+    //     if (results.status === DialogTurnStatus.empty) {
+    //         await dialogContext.beginDialog(this.id);
+    //     }
+    // }
+
     public async run(context: TurnContext, accessor: StatePropertyAccessor<DialogState>) {
         const dialogSet = new DialogSet(accessor);
         dialogSet.add(this);
@@ -46,7 +66,7 @@ export class AlwaysOnBotDialog extends ComponentDialog {
         console.log(results);
         if (results.status === DialogTurnStatus.empty) {
             await dialogContext.beginDialog(this.id);
-        } else if (results.status === DialogTurnStatus.complete && results.result === FEED_BACK_STEP) {
+        } else if (results.status === DialogTurnStatus.complete && results.result === GET_ADDRESS_STEP) {
             await context.sendActivity({
                 type: ActivityTypes.EndOfConversation,
                 code: EndOfConversationCodes.CompletedSuccessfully
@@ -69,10 +89,10 @@ export class AlwaysOnBotDialog extends ComponentDialog {
      * Passing current dialog name to common choice dialog.
      */
     private async introStep(stepContext: WaterfallStepContext): Promise<DialogTurnResult> {
-
-        return await stepContext.replaceDialog(UPDATE_PROFILE_STEP, UpdateProfileStep);
-    }
+        const addressDetails = new AddressDetails();
+        return await stepContext.replaceDialog(UPDATE_ADDRESS_STEP, addressDetails);
 }
+    }
 
 
 

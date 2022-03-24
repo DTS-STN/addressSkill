@@ -53,17 +53,13 @@ export class ChoiceCheckUpdateAddressStep extends ComponentDialog {
         else {
             promptMessage = i18n.__(`${commonPromptValidatorModel.promptCode}RetryPromptMessage`);
         }
-
         // displays prompt options to the user
         const promptOptions = i18n.__(`${commonPromptValidatorModel.promptCode}PromptOptions`);
         return await stepContext.prompt(CHOICE_PROMPT, {
             prompt: promptMessage,
             choices: ChoiceFactory.toChoices(promptOptions),
             style: ListStyle.suggestedAction
-
         });
-
-
     }
     // storing the intent value to the result and passing it to the common prompt validator class
     async finalStep(stepContext: WaterfallStepContext) {

@@ -1,4 +1,3 @@
-import { ActivityTypes, EndOfConversationCodes } from 'botbuilder';
 import {
     Choice, ChoiceFactory, ChoicePrompt, ComponentDialog, DialogTurnResult, PromptValidatorContext, TextPrompt,
     WaterfallDialog,
@@ -21,7 +20,6 @@ export class FeedBackStep extends ComponentDialog {
             .addDialog(new WaterfallDialog(FEED_BACK_WATERFALL_STEP, [
                 this.feedbackStep.bind(this),
                 this.finalStep.bind(this)
-
             ]));
 
         this.initialDialogId = FEED_BACK_WATERFALL_STEP;
@@ -47,6 +45,6 @@ export class FeedBackStep extends ComponentDialog {
     */
     async finalStep(stepContext) {
             await stepContext.context.sendActivity(i18n.__('continueAndFeedExcellent'));
-            return await stepContext.endDialog(this.id);
+            return await stepContext.parent.cancelAllDialogs(true);
     }
 }

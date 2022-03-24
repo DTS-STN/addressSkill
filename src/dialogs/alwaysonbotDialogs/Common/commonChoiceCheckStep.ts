@@ -4,13 +4,13 @@ import {
     ChoicePrompt, ComponentDialog, ListStyle, PromptValidatorContext, WaterfallDialog,
     WaterfallStepContext
 } from 'botbuilder-dialogs';
-import { adaptiveCard } from '../../../../cards';
-import { callbackCard } from '../../../../cards/callbackCard';
-import { CommonPromptValidatorModel } from '../../../../models/commonPromptValidatorModel';
-import i18n from '../../../locales/i18nConfig';
-import { LUISAlwaysOnBotSetup } from '../../alwaysOnBotRecognizer';
-import { CommonCallBackStep, COMMON_CALL_BACK_STEP } from '../commonCallBackStep';
-import { UpdateProfileStep, UPDATE_PROFILE_STEP } from '../updateProfileStep';
+import { adaptiveCard } from '../../../cards';
+import { callbackCard } from '../../../cards/callbackCard';
+import { CommonPromptValidatorModel } from '../../../models/commonPromptValidatorModel';
+import i18n from '../../locales/i18nConfig';
+import { LUISAlwaysOnBotSetup } from '../alwaysOnBotRecognizer';
+import { CommonCallBackStep, COMMON_CALL_BACK_STEP } from '../UpdateProfile/commonCallBackStep';
+import { UpdateProfileStep, UPDATE_PROFILE_STEP } from '../UpdateProfile/updateProfileStep';
 
 const CHOICE_PROMPT = 'CHOICE_PROMPT';
 export const COMMON_CHOICE_CHECK_STEP = 'COMMON_CHOICE_CHECK_STEP';

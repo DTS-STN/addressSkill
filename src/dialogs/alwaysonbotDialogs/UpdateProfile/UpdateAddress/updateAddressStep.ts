@@ -1,20 +1,19 @@
-
 import { Choice, ChoicePrompt, ComponentDialog, ConfirmPrompt, DialogTurnResult, PromptValidatorContext, WaterfallDialog, WaterfallStepContext } from 'botbuilder-dialogs';
 import { CommonPromptValidatorModel } from '../../../../models/commonPromptValidatorModel';
-import { CONTINUE_AND_FEEDBACK_STEP,ContinueAndFeedbackStep } from '../../Common/continueAndFeedbackStep';
-import { FeedBackStep, FEED_BACK_STEP } from '../../Common/feedBackStep';
-import { COMMON_CHOICE_CHECK_STEP } from '../../../alwaysonbotDialogs/UpdateProfile/UpdateAddress/commonChoiceCheckStep';
+import { CONTINUE_AND_FEEDBACK_STEP,ContinueAndFeedbackStep } from '../../common/continueAndFeedbackStep';
+import { FeedBackStep, FEED_BACK_STEP } from '../../common/feedBackStep';
 import { AddressDetails } from './addressDetails';
 import { GetAddressesStep, GET_ADDRESS_STEP } from './getAddressesStep';
 import i18n from '../../../locales/i18nConfig';
 import { COMMON_CALL_BACK_STEP,CommonCallBackStep } from '../commonCallBackStep';
+import { COMMON_CHOICE_CHECK_STEP } from '../../common/commonChoiceCheckStep';
 
 const CONFIRM_PROMPT = 'CONFIRM_PROMPT';
 const CHOICE_PROMPT = 'CHOICE_PROMPT';
 export const UPDATE_ADDRESS_STEP = 'UPDATE_ADDRESS_STEP';
 const UPDATE_ADDRESS_WATERFALL_STEP = 'UPDATE_ADDRESS_WATERFALL_STEP';
 
-let isCallBackPassed = false;
+let isCallBackPassed:boolean = false;
 // Define the main dialog and its related components.
 export class UpdateAddressStep extends ComponentDialog {
     constructor() {
@@ -41,7 +40,7 @@ export class UpdateAddressStep extends ComponentDialog {
      * Passing current dialog name to common choice dialog.
      */
     async checkAddressStep(stepContext: WaterfallStepContext): Promise<DialogTurnResult> {
-        const addressDetails = stepContext.options as AddressDetails;
+        let addressDetails = stepContext.options as AddressDetails;
         addressDetails.errorCount.updateAddressStep++;
         if (addressDetails.errorCount.updateAddressStep >= Number(i18n.__('MaxRetryCount'))) {
             const commonPromptValidatorModel = new CommonPromptValidatorModel(
@@ -53,7 +52,6 @@ export class UpdateAddressStep extends ComponentDialog {
             return await stepContext.replaceDialog(COMMON_CALL_BACK_STEP, commonPromptValidatorModel);
         }
         else{
-            console.log(addressDetails.errorCount.updateAddressStep);
             if (addressDetails.errorCount.updateAddressStep === 0){
             const commonPromptValidatorModel = new CommonPromptValidatorModel(
                ['promptConfirmYes', 'promptConfirmNo'],
@@ -63,7 +61,8 @@ export class UpdateAddressStep extends ComponentDialog {
             return await stepContext.beginDialog(COMMON_CHOICE_CHECK_STEP, commonPromptValidatorModel);
             }else{
                 isCallBackPassed = true;
-             //   const addressDetails = stepContext.options as AddressDetails;
+                await stepContext.context.sendActivity(i18n.__('AddressNotFoundMessage'));
+                addressDetails = stepContext.options as AddressDetails;
                 return await stepContext.replaceDialog(GET_ADDRESS_STEP, addressDetails);
 
             }
@@ -84,7 +83,8 @@ export class UpdateAddressStep extends ComponentDialog {
                     const addressDetails = stepContext.options as AddressDetails;
                     return await stepContext.replaceDialog(GET_ADDRESS_STEP, addressDetails);
                 case 'promptConfirmNo':
-                    return await stepContext.replaceDialog(CONTINUE_AND_FEEDBACK_STEP, ContinueAndFeedbackStep);
+                    await stepContext.context.sendActivity(i18n.__('UpdateAddressNoMessage'));
+                    return stepContext.endDialog(this.id);
             }
         }
         else {

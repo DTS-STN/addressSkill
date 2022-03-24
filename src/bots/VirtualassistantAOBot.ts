@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 
 import { ActivityHandler, BotState, ConversationState, StatePropertyAccessor, UserState } from 'botbuilder';
-import { Dialog, DialogSet, DialogState } from 'botbuilder-dialogs';
+import { Dialog, DialogState } from 'botbuilder-dialogs';
 
-import { ALWAYS_ON_BOT_DIALOG_STEP,AlwaysOnBotDialog } from '../dialogs/alwaysonbotDialogs/alwaysOnBotDialog';
-import i18n, { setLocale } from '../dialogs/locales/i18nConfig';
+import { ALWAYS_ON_BOT_DIALOG,AlwaysOnBotDialog } from '../dialogs/alwaysonbotDialogs/alwaysOnBotDialog';
+import i18n, { setLocale } from '../dialogs/locales/i18nconfig';
 
 export class VirtualassistantAOBot extends ActivityHandler {
     private conversationState: BotState;
@@ -62,20 +62,6 @@ export class VirtualassistantAOBot extends ActivityHandler {
             // Save any state changes. The load happened during the execution of the Dialog.
             await this.conversationState.saveChanges(context, false);
             await this.userState.saveChanges(context, false);
-
-            // const dialogSet = new DialogSet(this.dialogState);
-            // dialogSet.add(this.dialog);
-            // const dialogContext = await dialogSet.createContext(context);
-            // console.log();
-
-            // By calling next() you ensure that the next BotHandler is run.
-            await next();
-        });
-
-        this.onEndOfConversation(async (context, next) => {
-            // This will be called if the root bot is ending the conversation.  Sending additional messages should be
-            // avoided as the conversation may have been deleted.
-            // Perform cleanup of resources if needed.
 
             // By calling next() you ensure that the next BotHandler is run.
             await next();
