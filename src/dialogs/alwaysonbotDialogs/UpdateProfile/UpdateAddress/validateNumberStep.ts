@@ -3,9 +3,8 @@ import {
     WaterfallDialog
 } from 'botbuilder-dialogs';
 import { CommonPromptValidatorModel } from '../../../../models/commonPromptValidatorModel';
-import { CONTINUE_AND_FEEDBACK_STEP,ContinueAndFeedbackStep } from '../../common/continueAndFeedbackStep';
+import { ContinueAndFeedbackStep } from '../../Common/continueAndFeedbackStep';
 import i18n from '../../../locales/i18nConfig';
-import { FeedBackStep, FEED_BACK_STEP } from '../../common/feedBackStep';
 import { AddressDetails } from './addressDetails';
 import { COMMON_CALL_BACK_STEP,CommonCallBackStep } from '../commonCallBackStep';
 
