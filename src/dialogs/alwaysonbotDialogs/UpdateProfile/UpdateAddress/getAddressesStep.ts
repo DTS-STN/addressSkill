@@ -123,7 +123,7 @@ export class GetAddressesStep extends ComponentDialog {
                         return await stepContext.prompt(CHOICE_PROMPT, {
                             prompt: promptmsg,
                             choices: ChoiceFactory.toChoices(manyAddresses),
-                            style: ListStyle.heroCard
+                            style: ListStyle.suggestedAction
                         });
                         }
                     }
