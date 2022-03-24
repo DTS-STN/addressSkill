@@ -268,6 +268,10 @@ server.listen(process.env.port || process.env.PORT || 3978, () => {
 // Expose the manifest
 server.get('/manifest/*', restify.plugins.serveStatic({ directory: './manifest', appendRequestPath: false }));
 
+server.get('/', (req, res, next) => {
+    res.send(200);
+    next();
+    });
 // Listen for incoming activities and route them to your bot main dialog.
 server.post('/api/messages', (req, res) => {
     adapter.process(req, res, async (context) => {
