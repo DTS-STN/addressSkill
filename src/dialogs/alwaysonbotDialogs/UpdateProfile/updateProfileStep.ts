@@ -7,9 +7,9 @@ import { CommonPromptValidatorModel } from '../../../models/commonPromptValidato
 import { ContinueAndFeedbackStep } from '../Common/continueAndFeedbackStep';
 import { FeedBackStep, FEED_BACK_STEP } from '../Common/feedBackStep';
 import { UpdateAddressStep, UPDATE_ADDRESS_STEP } from './UpdateAddress/updateAddressStep';
-import { CommonChoiceCheckStep, COMMON_CHOICE_CHECK_STEP } from '../UpdateProfile/UpdateAddress/commonChoiceCheckStep';
 import i18n from '../../locales/i18nConfig';
 import { AddressDetails } from './UpdateAddress/addressDetails';
+import { CommonChoiceCheckStep, COMMON_CHOICE_CHECK_STEP } from '../Common/commonChoiceCheckStep';
 
 
 const TEXT_PROMPT = 'TEXT_PROMPT';
@@ -25,8 +25,6 @@ export class UpdateProfileStep extends ComponentDialog {
 
         this.addDialog(new TextPrompt(TEXT_PROMPT))
             .addDialog(new UpdateAddressStep())
-            .addDialog(new FeedBackStep())
-            .addDialog(new CommonChoiceCheckStep())
             .addDialog(new ContinueAndFeedbackStep())
             .addDialog(new ChoicePrompt(CHOICE_PROMPT, this.CustomChoiceValidator))
             .addDialog(new WaterfallDialog(UPDATE_PROFILE_WATERFALL_STEP, [
@@ -49,7 +47,7 @@ export class UpdateProfileStep extends ComponentDialog {
     async checkProfileStep(stepContext: WaterfallStepContext): Promise<DialogTurnResult> {
 
         const commonPromptValidatorModel = new CommonPromptValidatorModel(
-            ['UpdateMyAddress'],
+            ['UpdateMyAddress', 'UpdateMyPhoneNumber', 'UpdateMyEmail'],
             Number(i18n.__('MaxRetryCount')),
             'UpdateMyProfile',i18n.__('UpdateMyProfilePromptMessage')
         );
@@ -58,9 +56,9 @@ export class UpdateProfileStep extends ComponentDialog {
     }
    /**
     * Selection step in the waterfall.bot chooses the different flows depends on user's input
-    * If users selects 'Update My Address' then bot will navigate to the UpdateAddressDialog workflow
-    * If users selects 'Update My Phone Number' then bot will navigate to the UpdateMyPhoneDialog workflow
-    * If users selects 'Update My Email' then bot will navigate to the UpdateMyEmail workflow
+    * If users selects Update My Address then bot will navigate to the UpdateAddressDialog workflow
+    * If users selects Update My Phone Number then bot will navigate to the UpdateMyPhoneDialog workflow
+    * If users selects Update My Email then bot will navigate to the UpdateMyEmail workflow
     */
     async routingStep(stepContext) {
         const commonPromptValidatorModel = stepContext.result as CommonPromptValidatorModel;
