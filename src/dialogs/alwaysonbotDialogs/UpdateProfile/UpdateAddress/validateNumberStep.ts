@@ -7,7 +7,6 @@ import { ContinueAndFeedbackStep } from '../../Common/continueAndFeedbackStep';
 import i18n from '../../../locales/i18nConfig';
 import { AddressDetails } from './addressDetails';
 import { COMMON_CALL_BACK_STEP,CommonCallBackStep } from '../commonCallBackStep';
-
 const TEXT_PROMPT = 'TEXT_PROMPT';
 const CHOICE_PROMPT = 'CHOICE_PROMPT';
 
