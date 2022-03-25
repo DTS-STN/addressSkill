@@ -76,6 +76,11 @@ export class AlwaysOnBotDialog extends ComponentDialog {
                 type: ActivityTypes.EndOfConversation,
                 code: EndOfConversationCodes.CompletedSuccessfully
             });
+        } else if (results.status === DialogTurnStatus.complete){
+            await context.sendActivity({
+                type: ActivityTypes.EndOfConversation,
+                code: EndOfConversationCodes.CompletedSuccessfully
+            });
         }
     }
 
