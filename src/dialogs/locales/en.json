@@ -332,6 +332,7 @@
 	"StreetNamePromptMessage": "What's your new street name?",
 	"AddressNotFoundMessage": "No worries! We can try again.",
 	"UpdateAddressNoMessage": "Ok, no problem!",
+	"MultpleAddressesRetryPromptMessage": "Hmm, I'm not sure what you meant. Please select your street from the ones provided below",
 	"always-on-bot-block-end": "-------ALWAYS-ON-BOT-END------",
 	"undefinedPromptMessage": "undefinedPromptMessage",
 	"undefinedPromptOptions": "undefinedPromptOptions"
