@@ -62,10 +62,9 @@ export class CommonCallBackStep extends ComponentDialog {
         {
             switch (commonPromptValidatorModel.result) {
                 case 'YesIWantToRequestCall':
-                    const callbackBotDetails  = new CallbackBotDetails();
-                    return await stepContext.beginDialog(CALLBACK_BOT_DIALOG,callbackBotDetails);
+                    return await stepContext.parent.cancelAllDialogs(true);
                 case 'NoNotForNow':
-                    return await stepContext.replaceDialog(CONTINUE_AND_FEEDBACK_STEP, ContinueAndFeedbackStep);
+                    return await stepContext.parent.cancelAllDialogs(true);
             }
         }
         else
