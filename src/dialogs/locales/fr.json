@@ -318,6 +318,7 @@
 	"AddressNotFoundMessage":"Pas de problème! Nous pouvons réessayer.",
 	"UpdateAddressFinalMessage":"Pour le moment, vous avez tout ce qu'il vous faut!",
 	"UpdateAddressNoMessage":"D'accord, pas de problème.",
+	"MultpleAddressesRetryPromptMessage": "Hum, je ne comprends pas. Veuillez sélectionner votre rue parmi celles qui sont proposées ci-dessous.",
 	"always-on-bot-block-end": "-------ALWAYS-ON-BOT-END------"
   }
 
